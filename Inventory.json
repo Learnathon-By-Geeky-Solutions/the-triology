@@ -1,0 +1,1 @@
+{"suppliers":[{"id":1,"name":"Nayon","address":"Cumilla","contact":"01624728856"},{"id":1,"name":"Nayon","address":"Cumilla","contact":"01624728856"},{"id":1,"name":"Cumilla ","address":"Cumilla","contact":"015565566335"}],"stock":[{"id":10,"Product_Name":"Laptop","Supplier_ID":10,"Quantity":100,"Price":56000.0}],"sales":[{"id":100,"quantitySold":5,"totalprice":5000.0}]}
