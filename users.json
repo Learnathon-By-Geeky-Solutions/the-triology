@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Sheikh Sady",
+    "email": "Sady@gmail.com",
+    "password": "123456"
+  },
+  {
+    "name": "nasim ahmed",
+    "email": "nasim@gmail.com",
+    "password": "123456",
+    "type": "Customer"
+  },
+  {
+    "name": "naeem khondokar",
+    "email": "naeem@gmail.com",
+    "password": "123456",
+    "type": "Vendor"
+  }
+]
