@@ -67,6 +67,7 @@ public class Patient {
     }
 
     public LocalDate getDateOfBirth() { return dateOfBirth; }
+
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         this.age = calculateAge(dateOfBirth);  // Auto-update age when DOB is set
