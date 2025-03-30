@@ -2,6 +2,9 @@ package com.Smart.Health.Care.Management.System.Service;
 
 import com.Smart.Health.Care.Management.System.DTO.AppointmentCreateDto;
 import com.Smart.Health.Care.Management.System.DTO.AppointmentDto;
+import com.Smart.Health.Care.Management.System.Exception.BusinessLogicException;
+import com.Smart.Health.Care.Management.System.Exception.InvalidInputException;
+import com.Smart.Health.Care.Management.System.Exception.ResourceNotFoundException;
 import com.Smart.Health.Care.Management.System.Mapper.AppointmentMapper;
 import com.Smart.Health.Care.Management.System.Model.Appointment;
 import com.Smart.Health.Care.Management.System.Model.Doctor;
@@ -12,6 +15,7 @@ import com.Smart.Health.Care.Management.System.Repository.PatientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,19 +34,20 @@ public class AppointmentService {
     @Autowired
     private AppointmentMapper appointmentMapper;
 
-    // ✅ Add Appointment
     public String addAppointment(AppointmentCreateDto dto) {
+        validateAppointmentCreateDto(dto);
+
         Patient patient = patientRepo.findById(dto.getPatientId())
-                .orElseThrow(() -> new RuntimeException("Patient not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found with ID: " + dto.getPatientId()));
+
         Doctor doctor = doctorRepo.findById(dto.getDoctorId())
-                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Doctor not found with ID: " + dto.getDoctorId()));
 
         Appointment appointment = appointmentMapper.toEntity(dto, patient, doctor);
         appointmentRepo.save(appointment);
         return "Appointment added";
     }
 
-    // ✅ Get All Appointments
     public List<AppointmentDto> getAllAppointments() {
         return appointmentRepo.findAll()
                 .stream()
@@ -50,25 +55,24 @@ public class AppointmentService {
                 .collect(Collectors.toList());
     }
 
-    // ✅ Get Single Appointment by ID
     public AppointmentDto getAppointmentById(Long id) {
         Appointment appointment = appointmentRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with ID: " + id));
         return appointmentMapper.toDto(appointment);
     }
 
-    // ✅ Update Appointment by ID
     public String updateAppointment(Long id, AppointmentCreateDto dto) {
+        validateAppointmentCreateDto(dto);
+
         Appointment existingAppointment = appointmentRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with ID: " + id));
 
-        // Fetch updated patient and doctor
         Patient patient = patientRepo.findById(dto.getPatientId())
-                .orElseThrow(() -> new RuntimeException("Patient not found"));
-        Doctor doctor = doctorRepo.findById(dto.getDoctorId())
-                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found with ID: " + dto.getPatientId()));
 
-        // Update fields
+        Doctor doctor = doctorRepo.findById(dto.getDoctorId())
+                .orElseThrow(() -> new ResourceNotFoundException("Doctor not found with ID: " + dto.getDoctorId()));
+
         existingAppointment.setPatient(patient);
         existingAppointment.setDoctor(doctor);
         existingAppointment.setDate(dto.getDate());
@@ -78,12 +82,19 @@ public class AppointmentService {
         return "Appointment updated";
     }
 
-    // ✅ Delete Appointment by ID
     public String deleteAppointment(Long id) {
-        if (!appointmentRepo.existsById(id)) {
-            throw new RuntimeException("Appointment not found");
-        }
-        appointmentRepo.deleteById(id);
+        Appointment appointment = appointmentRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with ID: " + id));
+        appointmentRepo.delete(appointment);
         return "Appointment deleted";
+    }
+
+    private void validateAppointmentCreateDto(AppointmentCreateDto dto) {
+        if (dto.getDate() == null || dto.getDate().isBefore(LocalDate.now())) {
+            throw new BusinessLogicException("Appointment date must be today or in the future.");
+        }
+        if (dto.getTime() == null) {
+            throw new InvalidInputException("Appointment time must not be null.");
+        }
     }
 }
