@@ -2,6 +2,7 @@ package com.Smart.Health.Care.Management.System.Controller;
 
 import com.Smart.Health.Care.Management.System.DTO.AppointmentCreateDto;
 import com.Smart.Health.Care.Management.System.DTO.AppointmentDto;
+import com.Smart.Health.Care.Management.System.Response.CustomResponse;
 import com.Smart.Health.Care.Management.System.Service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,33 +17,33 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
-    // ✅ Add Appointment
     @PostMapping("")
-    public ResponseEntity<String> addAppointment(@RequestBody AppointmentCreateDto dto) {
-        return ResponseEntity.ok(appointmentService.addAppointment(dto));
+    public ResponseEntity<CustomResponse<String>> addAppointment(@RequestBody AppointmentCreateDto dto) {
+        String result = appointmentService.addAppointment(dto);
+        return ResponseEntity.ok(new CustomResponse<>("S0000", "Appointment added successfully.", result));
     }
 
-    // ✅ Get All Appointments
     @GetMapping("")
-    public ResponseEntity<List<AppointmentDto>> getAppointments() {
-        return ResponseEntity.ok(appointmentService.getAllAppointments());
+    public ResponseEntity<CustomResponse<List<AppointmentDto>>> getAppointments() {
+        List<AppointmentDto> list = appointmentService.getAllAppointments();
+        return ResponseEntity.ok(new CustomResponse<>("S0000", "Fetched all appointments.", list));
     }
 
-    // ✅ Get Appointment by ID
     @GetMapping("/{id}")
-    public ResponseEntity<AppointmentDto> getAppointmentById(@PathVariable Long id) {
-        return ResponseEntity.ok(appointmentService.getAppointmentById(id));
+    public ResponseEntity<CustomResponse<AppointmentDto>> getAppointmentById(@PathVariable Long id) {
+        AppointmentDto dto = appointmentService.getAppointmentById(id);
+        return ResponseEntity.ok(new CustomResponse<>("S0000", "Fetched appointment by ID.", dto));
     }
 
-    // ✅ Update Appointment
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateAppointment(@PathVariable Long id, @RequestBody AppointmentCreateDto dto) {
-        return ResponseEntity.ok(appointmentService.updateAppointment(id, dto));
+    public ResponseEntity<CustomResponse<String>> updateAppointment(@PathVariable Long id, @RequestBody AppointmentCreateDto dto) {
+        String result = appointmentService.updateAppointment(id, dto);
+        return ResponseEntity.ok(new CustomResponse<>("S0000", "Appointment updated successfully.", result));
     }
 
-    // ✅ Delete Appointment by ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteAppointment(@PathVariable Long id) {
-        return ResponseEntity.ok(appointmentService.deleteAppointment(id));
+    public ResponseEntity<CustomResponse<String>> deleteAppointment(@PathVariable Long id) {
+        String result = appointmentService.deleteAppointment(id);
+        return ResponseEntity.ok(new CustomResponse<>("S0000", "Appointment deleted successfully.", result));
     }
 }
