@@ -15,8 +15,6 @@ public class DoctorDto {
         this.docname = docname;
         this.docspeciality = docspeciality;
         this.docexperience = docexperience;
-        this.docemail = docemail;
-        this.docphone = docphone;
 
     }
     public int getId() {
