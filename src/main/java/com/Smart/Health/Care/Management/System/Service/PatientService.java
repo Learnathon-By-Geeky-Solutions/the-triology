@@ -73,4 +73,8 @@ public class PatientService {
             throw new BusinessLogicException("Date of birth cannot be in the future.");
         }
     }
+    public Patient getPatientEntityById(int id) {
+        return patientRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Patient with ID " + id + " not found"));
+    }
 }
