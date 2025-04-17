@@ -1,0 +1,49 @@
+package com.smart.Health.Care.Management.system.controller;
+
+import com.smart.Health.Care.Management.system.dto.AppointmentCreateDto;
+import com.smart.Health.Care.Management.system.dto.AppointmentDto;
+import com.smart.Health.Care.Management.system.response.CustomResponse;
+import com.smart.Health.Care.Management.system.service.AppointmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/appointment")
+public class AppointmentController {
+
+    @Autowired
+    private AppointmentService appointmentService;
+
+    @PostMapping("")
+    public ResponseEntity<CustomResponse<String>> addAppointment(@RequestBody AppointmentCreateDto dto) {
+        String result = appointmentService.addAppointment(dto);
+        return ResponseEntity.ok(new CustomResponse<>("S0000", "Appointment added successfully.", result));
+    }
+
+    @GetMapping("")
+    public ResponseEntity<CustomResponse<List<AppointmentDto>>> getAppointments() {
+        List<AppointmentDto> list = appointmentService.getAllAppointments();
+        return ResponseEntity.ok(new CustomResponse<>("S0000", "Fetched all appointments.", list));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomResponse<AppointmentDto>> getAppointmentById(@PathVariable Long id) {
+        AppointmentDto dto = appointmentService.getAppointmentById(id);
+        return ResponseEntity.ok(new CustomResponse<>("S0000", "Fetched appointment by ID.", dto));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomResponse<String>> updateAppointment(@PathVariable Long id, @RequestBody AppointmentCreateDto dto) {
+        String result = appointmentService.updateAppointment(id, dto);
+        return ResponseEntity.ok(new CustomResponse<>("S0000", "Appointment updated successfully.", result));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<CustomResponse<String>> deleteAppointment(@PathVariable Long id) {
+        String result = appointmentService.deleteAppointment(id);
+        return ResponseEntity.ok(new CustomResponse<>("S0000", "Appointment deleted successfully.", result));
+    }
+}
