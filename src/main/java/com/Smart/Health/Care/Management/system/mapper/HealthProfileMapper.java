@@ -1,9 +1,9 @@
-package com.smart.Health.Care.Management.system.mapper;
+package com.smart.health.care.management.system.mapper;
 
-import com.smart.Health.Care.Management.system.dto.HealthProfileDto;
-import com.smart.Health.Care.Management.system.dto.HealthProfileCreateDto;
-import com.smart.Health.Care.Management.system.model.HealthProfile;
-import com.smart.Health.Care.Management.system.model.Patient;
+import com.smart.health.care.management.system.dto.HealthProfileDto;
+import com.smart.health.care.management.system.dto.HealthProfileCreateDto;
+import com.smart.health.care.management.system.model.HealthProfile;
+import com.smart.health.care.management.system.model.Patient;
 import org.springframework.stereotype.Component;
 
 @Component

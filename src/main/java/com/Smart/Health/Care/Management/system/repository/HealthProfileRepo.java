@@ -1,6 +1,6 @@
-package com.smart.Health.Care.Management.system.repository;
+package com.smart.health.care.management.system.repository;
 
-import com.smart.Health.Care.Management.system.model.HealthProfile;
+import com.smart.health.care.management.system.model.HealthProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,26 +1,29 @@
-package com.smart.Health.Care.Management.system.service;
+package com.smart.health.care.management.system.service;
 
-import com.smart.Health.Care.Management.system.dto.DoctorCreateDto;
-import com.smart.Health.Care.Management.system.dto.DoctorDto;
-import com.smart.Health.Care.Management.system.exception.BusinessLogicException;
-import com.smart.Health.Care.Management.system.exception.InvalidInputException;
-import com.smart.Health.Care.Management.system.exception.ResourceNotFoundException;
-import com.smart.Health.Care.Management.system.mapper.DoctorMapper;
-import com.smart.Health.Care.Management.system.model.Doctor;
-import com.smart.Health.Care.Management.system.repository.DoctorRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.smart.health.care.management.system.dto.DoctorCreateDto;
+import com.smart.health.care.management.system.dto.DoctorDto;
+import com.smart.health.care.management.system.exception.BusinessLogicException;
+import com.smart.health.care.management.system.exception.InvalidInputException;
+import com.smart.health.care.management.system.exception.ResourceNotFoundException;
+import com.smart.health.care.management.system.mapper.DoctorMapper;
+import com.smart.health.care.management.system.model.Doctor;
+import com.smart.health.care.management.system.repository.DoctorRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class DoctorService {
-    @Autowired
-    private DoctorRepo doctorRepo;
 
-    @Autowired
-    private DoctorMapper doctorMapper;
+    private final DoctorRepo doctorRepo;
+    private final DoctorMapper doctorMapper;
+
+    public DoctorService(DoctorRepo doctorRepo, DoctorMapper doctorMapper) {
+        this.doctorRepo = doctorRepo;
+        this.doctorMapper = doctorMapper;
+    }
+
+
 
     public String addDoctor(DoctorCreateDto doctorCreateDto) {
         validateDoctorCreateDto(doctorCreateDto);
@@ -29,11 +32,14 @@ public class DoctorService {
         return "Doctor added successfully";
     }
     public List<DoctorDto> getAllDoctors() {
-        return doctorRepo.findAll().stream().map(doctorMapper::toDto).collect(Collectors.toList());
+        return doctorRepo.findAll().stream().map(doctorMapper::toDto).toList();
     }
+
+    private static final String DOCID= "Doctor with ID ";
+    private static final String FOUND= " not found";
     public DoctorDto getDoctorById(int id) {
         Doctor doctor = doctorRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Doctor with ID " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException(DOCID + id + FOUND));
         return doctorMapper.toDto(doctor);
 
     }
@@ -41,7 +47,7 @@ public class DoctorService {
     public String updateDoctor(int id, DoctorCreateDto doctorCreateDto) {
         validateDoctorCreateDto(doctorCreateDto);
         Doctor existingdoctor= doctorRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Doctor with ID " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException(DOCID + id + FOUND));
         existingdoctor.setName(doctorCreateDto.getDoctorName());
         existingdoctor.setSpecialty(doctorCreateDto.getDoctorspeciality());
         existingdoctor.setExperience(doctorCreateDto.getDoctorexperience());
@@ -53,7 +59,7 @@ public class DoctorService {
     }
     public String deleteDoctor(int id) {
         Doctor doc = doctorRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Doctor with ID " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException(DOCID + id + FOUND));
         doctorRepo.delete(doc);
         return "Doctor deleted successfully";
     }

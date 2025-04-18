@@ -1,4 +1,4 @@
-package com.smart.Health.Care.Management.system.exception;
+package com.smart.health.care.management.system.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

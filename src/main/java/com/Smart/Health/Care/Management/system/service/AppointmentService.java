@@ -1,38 +1,37 @@
-package com.smart.Health.Care.Management.system.service;
+package com.smart.health.care.management.system.service;
 
-import com.smart.Health.Care.Management.system.dto.AppointmentCreateDto;
-import com.smart.Health.Care.Management.system.dto.AppointmentDto;
-import com.smart.Health.Care.Management.system.exception.BusinessLogicException;
-import com.smart.Health.Care.Management.system.exception.InvalidInputException;
-import com.smart.Health.Care.Management.system.exception.ResourceNotFoundException;
-import com.smart.Health.Care.Management.system.mapper.AppointmentMapper;
-import com.smart.Health.Care.Management.system.model.Appointment;
-import com.smart.Health.Care.Management.system.model.Doctor;
-import com.smart.Health.Care.Management.system.model.Patient;
-import com.smart.Health.Care.Management.system.repository.AppointmentRepo;
-import com.smart.Health.Care.Management.system.repository.DoctorRepo;
-import com.smart.Health.Care.Management.system.repository.PatientRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.smart.health.care.management.system.dto.AppointmentCreateDto;
+import com.smart.health.care.management.system.dto.AppointmentDto;
+import com.smart.health.care.management.system.exception.BusinessLogicException;
+import com.smart.health.care.management.system.exception.InvalidInputException;
+import com.smart.health.care.management.system.exception.ResourceNotFoundException;
+import com.smart.health.care.management.system.mapper.AppointmentMapper;
+import com.smart.health.care.management.system.model.Appointment;
+import com.smart.health.care.management.system.model.Doctor;
+import com.smart.health.care.management.system.model.Patient;
+import com.smart.health.care.management.system.repository.AppointmentRepo;
+import com.smart.health.care.management.system.repository.DoctorRepo;
+import com.smart.health.care.management.system.repository.PatientRepo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class AppointmentService {
 
-    @Autowired
-    private AppointmentRepo appointmentRepo;
+    //@Autowired
+    private final AppointmentRepo appointmentRepo;
+    private final PatientRepo patientRepo;
+    private final DoctorRepo doctorRepo;
+    private final AppointmentMapper appointmentMapper;
+    public AppointmentService(AppointmentRepo appointmentRepo, PatientRepo patientRepo,DoctorRepo doctorRepo, AppointmentMapper appointmentMapper){
+        this.appointmentRepo = appointmentRepo;
+        this.patientRepo = patientRepo;
+        this.doctorRepo = doctorRepo;
+        this.appointmentMapper = appointmentMapper;
+    }
 
-    @Autowired
-    private PatientRepo patientRepo;
-
-    @Autowired
-    private DoctorRepo doctorRepo;
-
-    @Autowired
-    private AppointmentMapper appointmentMapper;
 
     public String addAppointment(AppointmentCreateDto dto) {
         validateAppointmentCreateDto(dto);
@@ -52,20 +51,22 @@ public class AppointmentService {
         return appointmentRepo.findAll()
                 .stream()
                 .map(appointmentMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
+    private static final String APP= "Appointment not found with ID: ";
     public AppointmentDto getAppointmentById(Long id) {
         Appointment appointment = appointmentRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(APP + id));
         return appointmentMapper.toDto(appointment);
     }
+
 
     public String updateAppointment(Long id, AppointmentCreateDto dto) {
         validateAppointmentCreateDto(dto);
 
         Appointment existingAppointment = appointmentRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(APP+ id));
 
         Patient patient = patientRepo.findById(dto.getPatientId())
                 .orElseThrow(() -> new ResourceNotFoundException("Patient not found with ID: " + dto.getPatientId()));
@@ -84,7 +85,7 @@ public class AppointmentService {
 
     public String deleteAppointment(Long id) {
         Appointment appointment = appointmentRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(APP + id));
         appointmentRepo.delete(appointment);
         return "Appointment deleted";
     }

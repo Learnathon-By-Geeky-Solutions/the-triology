@@ -1,28 +1,30 @@
-package com.smart.Health.Care.Management.system.service;
+package com.smart.health.care.management.system.service;
 
-import com.smart.Health.Care.Management.system.dto.PatientCreateDto;
-import com.smart.Health.Care.Management.system.dto.PatientDto;
-import com.smart.Health.Care.Management.system.exception.BusinessLogicException;
-import com.smart.Health.Care.Management.system.exception.InvalidInputException;
-import com.smart.Health.Care.Management.system.exception.ResourceNotFoundException;
-import com.smart.Health.Care.Management.system.mapper.PatientMapper;
-import com.smart.Health.Care.Management.system.model.Patient;
-import com.smart.Health.Care.Management.system.repository.PatientRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.smart.health.care.management.system.dto.PatientCreateDto;
+import com.smart.health.care.management.system.dto.PatientDto;
+import com.smart.health.care.management.system.exception.BusinessLogicException;
+import com.smart.health.care.management.system.exception.InvalidInputException;
+import com.smart.health.care.management.system.exception.ResourceNotFoundException;
+import com.smart.health.care.management.system.mapper.PatientMapper;
+import com.smart.health.care.management.system.model.Patient;
+import com.smart.health.care.management.system.repository.PatientRepo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PatientService {
 
-    @Autowired
-    private PatientRepo patientRepo;
 
-    @Autowired
-    private PatientMapper patientMapper;
+    private final PatientRepo patientRepo;
+    private final PatientMapper patientMapper;
+
+    public PatientService(PatientRepo patientRepo, PatientMapper patientMapper) {
+        this.patientRepo = patientRepo;
+        this.patientMapper = patientMapper;
+    }
+
 
     public String addPatient(PatientCreateDto patientCreateDto) {
         validatePatientCreateDto(patientCreateDto);
@@ -35,22 +37,22 @@ public class PatientService {
         return patientRepo.findAll()
                 .stream()
                 .map(patientMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
-    private static final String action = "Patient with ID ";
-    private static final String action1= " not found";
+    private static final String ACTION = "Patient with ID ";
+    private static final String ACTION1= " not found";
 
     public PatientDto getPatientById(int id) {
         Patient patient = patientRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(action + id + action1));
+                .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
         return patientMapper.toDto(patient);
     }
 
     public String updatePatient(int id, PatientCreateDto patientCreateDto) {
         validatePatientCreateDto(patientCreateDto);
         Patient existingPatient = patientRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(action + id + action1));
+                .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
         existingPatient.setName(patientCreateDto.getName());
         existingPatient.setPhoneNumber(patientCreateDto.getPhoneNumber());
         existingPatient.setDateOfBirth(patientCreateDto.getDateOfBirth());
@@ -60,7 +62,7 @@ public class PatientService {
 
     public String deletePatient(int id) {
         Patient patient = patientRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(action + id + action));
+                .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
         patientRepo.delete(patient);
         return "Patient deleted";
     }
@@ -76,8 +78,8 @@ public class PatientService {
             throw new BusinessLogicException("Date of birth cannot be in the future.");
         }
     }
-    public com.smart.Health.Care.Management.system.model.Patient getPatientEntityById(int id) {
+    public com.smart.health.care.management.system.model.Patient getPatientEntityById(int id) {
         return patientRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(action + id + action1));
+                .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
     }
 }

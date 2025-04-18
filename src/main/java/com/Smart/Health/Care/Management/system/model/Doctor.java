@@ -1,4 +1,4 @@
-package com.smart.Health.Care.Management.system.model;
+package com.smart.health.care.management.system.model;
 
 import jakarta.persistence.*;
 

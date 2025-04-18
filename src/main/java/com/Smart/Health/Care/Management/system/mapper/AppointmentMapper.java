@@ -1,10 +1,10 @@
-package com.smart.Health.Care.Management.system.mapper;
+package com.smart.health.care.management.system.mapper;
 
-import com.smart.Health.Care.Management.system.dto.AppointmentCreateDto;
-import com.smart.Health.Care.Management.system.dto.AppointmentDto;
-import com.smart.Health.Care.Management.system.model.Appointment;
-import com.smart.Health.Care.Management.system.model.Doctor;
-import com.smart.Health.Care.Management.system.model.Patient;
+import com.smart.health.care.management.system.dto.AppointmentCreateDto;
+import com.smart.health.care.management.system.dto.AppointmentDto;
+import com.smart.health.care.management.system.model.Appointment;
+import com.smart.health.care.management.system.model.Doctor;
+import com.smart.health.care.management.system.model.Patient;
 import org.springframework.stereotype.Component;
 
 @Component

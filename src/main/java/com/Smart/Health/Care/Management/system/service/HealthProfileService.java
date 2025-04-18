@@ -1,13 +1,13 @@
-package com.smart.Health.Care.Management.system.service;
+package com.smart.health.care.management.system.service;
 
-import com.smart.Health.Care.Management.system.dto.HealthProfileCreateDto;
-import com.smart.Health.Care.Management.system.dto.HealthProfileDto;
-import com.smart.Health.Care.Management.system.exception.InvalidInputException;
-import com.smart.Health.Care.Management.system.exception.ResourceNotFoundException;
-import com.smart.Health.Care.Management.system.mapper.HealthProfileMapper;
-import com.smart.Health.Care.Management.system.model.HealthProfile;
-import com.smart.Health.Care.Management.system.model.Patient;
-import com.smart.Health.Care.Management.system.repository.HealthProfileRepo;
+import com.smart.health.care.management.system.dto.HealthProfileCreateDto;
+import com.smart.health.care.management.system.dto.HealthProfileDto;
+import com.smart.health.care.management.system.exception.InvalidInputException;
+import com.smart.health.care.management.system.exception.ResourceNotFoundException;
+import com.smart.health.care.management.system.mapper.HealthProfileMapper;
+import com.smart.health.care.management.system.model.HealthProfile;
+import com.smart.health.care.management.system.model.Patient;
+import com.smart.health.care.management.system.repository.HealthProfileRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

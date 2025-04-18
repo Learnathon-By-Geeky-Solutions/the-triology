@@ -1,4 +1,4 @@
-package com.smart.Health.Care.Management.system.dto;
+package com.smart.health.care.management.system.dto;
 
 public class DoctorCreateDto {
     private String doctorName;

@@ -1,4 +1,4 @@
-package com.Smart.Health.Care.Management.system;
+package com.smart.health.care.management.system;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.smart.Health.Care.Management.system.exception;
+package com.smart.health.care.management.system.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

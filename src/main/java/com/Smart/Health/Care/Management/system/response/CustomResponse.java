@@ -1,4 +1,4 @@
-package com.smart.Health.Care.Management.system.response;
+package com.smart.health.care.management.system.response;
 
 public class CustomResponse<T> {
     private String responseCode;
