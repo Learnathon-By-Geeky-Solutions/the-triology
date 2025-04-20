@@ -2,10 +2,13 @@ package com.Smart.Health.Care.Management.System.Controller;
 
 import com.Smart.Health.Care.Management.System.DTO.PatientCreateDto;
 import com.Smart.Health.Care.Management.System.DTO.PatientDto;
+import com.Smart.Health.Care.Management.System.Model.Patient;
+import org.springframework.security.core.Authentication;
 import com.Smart.Health.Care.Management.System.Response.CustomResponse;
 import com.Smart.Health.Care.Management.System.Service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +24,15 @@ public class PatientController {
     public ResponseEntity<CustomResponse<String>> addPatient(@RequestBody PatientCreateDto dto) {
         String result = patientService.addPatient(dto);
         return ResponseEntity.ok(new CustomResponse<>("S0000", "Patient added successfully.", result));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<Patient> authenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        Patient currentUser = (Patient) authentication.getPrincipal();
+
+        return ResponseEntity.ok(currentUser);
     }
 
     @GetMapping

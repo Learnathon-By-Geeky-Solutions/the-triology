@@ -2,19 +2,22 @@ package com.Smart.Health.Care.Management.System.DTO;
 
 public class DoctorDto {
     private int id;
-    private String docname;
-    private String docspeciality;
-    private String docexperience;
-    private String docemail;
-    private String docphone;
+    private String docName;
+    private String docSpeciality;
+    private String docExperience;
+    /*private String docEmail;
+    private String docPhone;
+     private String doctorPassword;
+
+     */
 
 
     //constructor
-    public DoctorDto(int id, String docname, String docspeciality, String docexperience) {
+    public DoctorDto(int id, String docName, String docSpeciality, String docExperience) {
         this.id= id;
-        this.docname = docname;
-        this.docspeciality = docspeciality;
-        this.docexperience = docexperience;
+        this.docName = docName;
+        this.docSpeciality = docSpeciality;
+        this.docExperience = docExperience;
 
     }
     public int getId() {
@@ -23,37 +26,45 @@ public class DoctorDto {
     public void setId(int id) {
         this.id = id;
     }
-    public String getDocname() {
-        return docname;
+    public String getDocName() {
+        return docName;
     }
-    public void setDocname(String docname) {
-        this.docname = docname;
+    public void setDocName(String docName) {
+        this.docName = docName;
     }
-    public String getDocspeciality() {
-        return docspeciality;
+    public String getDocSpeciality() {
+        return docSpeciality;
     }
-    public void setDocspeciality(String docspeciality) {
-        this.docspeciality = docspeciality;
+    public void setDocSpeciality(String docSpeciality) {
+        this.docSpeciality = docSpeciality;
     }
-    public String getDocexperience() {
-        return docexperience;
+    public String getDocExperience() {
+        return docExperience;
     }
-    public void setDocexperience(String docexperience) {
-        this.docexperience = docexperience;
+    public void setDocExperience(String docExperience) {
+        this.docExperience = docExperience;
     }
-    public String getDocemail() {
-        return docemail;
+    /*
+    public String getDocEmail() {
+        return docEmail;
     }
-    public void setDocemail(String docemail) {
-        this.docemail = docemail;
+    public void setDocEmail(String docEmail) {
+        this.docEmail = docEmail;
     }
     public String getDocphone() {
-        return docphone;
+        return docPhone;
     }
-    public void setDocphone(String docphone) {
-        this.docphone = docphone;
+    public void setDocPhone(String docPhone) {
+        this.docPhone = docPhone;
+    }
+    public String getDoctorPassword() {
+        return doctorPassword;
+    }
+    public void setDoctorPassword(String doctorPassword) {
+        this.doctorPassword = doctorPassword;
     }
 
+     */
 
 
 }

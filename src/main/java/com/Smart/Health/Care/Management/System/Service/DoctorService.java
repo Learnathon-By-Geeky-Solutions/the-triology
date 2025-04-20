@@ -43,10 +43,10 @@ public class DoctorService {
         Doctor existingdoctor= doctorRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Doctor with ID " + id + " not found"));
         existingdoctor.setName(doctorCreateDto.getDoctorName());
-        existingdoctor.setSpecialty(doctorCreateDto.getDoctorspeciality());
-        existingdoctor.setExperience(doctorCreateDto.getDoctorexperience());
-        existingdoctor.setPhone(doctorCreateDto.getDoctorphone());
-        existingdoctor.setEmail(doctorCreateDto.getDoctoremail());
+        existingdoctor.setSpecialty(doctorCreateDto.getDoctorSpeciality());
+        existingdoctor.setExperience(doctorCreateDto.getDoctorExperience());
+        existingdoctor.setPhone(doctorCreateDto.getDoctorPhone());
+        existingdoctor.setEmail(doctorCreateDto.getDoctorEmail());
 
         doctorRepo.save(existingdoctor);
         return "Doctor updated successfully";
@@ -64,23 +64,23 @@ public class DoctorService {
         if (dto.getDoctorName() == null || dto.getDoctorName().trim().isEmpty()) {
             throw new InvalidInputException("Doctor name cannot be empty.");
         }
-        if (dto.getDoctorphone() == null || dto.getDoctorphone().trim().length() < 11) {
+        if (dto.getDoctorPhone() == null || dto.getDoctorPhone().trim().length() < 11) {
             throw new InvalidInputException("Phone number must be at least 11 digits.");
         }
-        if (dto.getDoctoremail() == null || dto.getDoctoremail().trim().isEmpty()) {
+        if (dto.getDoctorEmail() == null || dto.getDoctorEmail().trim().isEmpty()) {
             throw new BusinessLogicException("Email cannot be empty.");
         }
         else{
-            String email = dto.getDoctoremail().trim();
+            String email = dto.getDoctorEmail().trim();
             String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
             if (!email.matches(emailRegex)) {
                 throw new BusinessLogicException("Invalid email format.");
             }
         }
-        if(dto.getDoctorexperience() == null || dto.getDoctorexperience().trim().isEmpty()) {
+        if(dto.getDoctorExperience() == null || dto.getDoctorExperience().trim().isEmpty()) {
             throw new BusinessLogicException("Experience cannot be empty.");
         }
-        if(dto.getDoctorspeciality()==null || dto.getDoctorspeciality().trim().isEmpty()) {
+        if(dto.getDoctorSpeciality()==null || dto.getDoctorSpeciality().trim().isEmpty()) {
             throw new BusinessLogicException("Speciality cannot be empty.");
         }
     }

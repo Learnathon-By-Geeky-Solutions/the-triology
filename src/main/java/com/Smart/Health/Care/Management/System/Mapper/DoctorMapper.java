@@ -20,10 +20,11 @@ public class DoctorMapper {
     public Doctor toEntity(DoctorCreateDto dto) {
         Doctor doctor = new Doctor();
         doctor.setName(dto.getDoctorName());
-        doctor.setSpecialty(dto.getDoctorspeciality());
-        doctor.setExperience(dto.getDoctorexperience());
-        doctor.setEmail(dto.getDoctoremail());
-        doctor.setPhone(dto.getDoctorphone());
+        doctor.setSpecialty(dto.getDoctorSpeciality());
+        doctor.setExperience(dto.getDoctorExperience());
+        doctor.setEmail(dto.getDoctorEmail());
+        doctor.setPhone(dto.getDoctorPhone());
+        doctor.setPassword(dto.getDoctorPassword());
         return doctor;
     }
 }
