@@ -1,6 +1,5 @@
 package com.Smart.Health.Care.Management.System.Config;
 
-import com.Smart.Health.Care.Management.System.Config.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;

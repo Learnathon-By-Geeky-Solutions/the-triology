@@ -4,7 +4,6 @@ package com.Smart.Health.Care.Management.System.Controller;
 import com.Smart.Health.Care.Management.System.DTO.DoctorCreateDto;
 import com.Smart.Health.Care.Management.System.DTO.DoctorDto;
 import com.Smart.Health.Care.Management.System.Model.Doctor;
-import com.Smart.Health.Care.Management.System.Model.Patient;
 import com.Smart.Health.Care.Management.System.Response.CustomResponse;
 import com.Smart.Health.Care.Management.System.Service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;

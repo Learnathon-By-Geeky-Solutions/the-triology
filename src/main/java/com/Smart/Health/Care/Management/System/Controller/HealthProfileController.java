@@ -2,7 +2,6 @@ package com.Smart.Health.Care.Management.System.Controller;
 
 import com.Smart.Health.Care.Management.System.DTO.HealthProfileCreateDto;
 import com.Smart.Health.Care.Management.System.DTO.HealthProfileDto;
-import com.Smart.Health.Care.Management.System.Model.HealthProfile;
 import com.Smart.Health.Care.Management.System.Service.HealthProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
