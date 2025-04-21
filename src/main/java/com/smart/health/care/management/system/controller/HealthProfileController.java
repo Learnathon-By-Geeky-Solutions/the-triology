@@ -4,11 +4,6 @@ import com.smart.health.care.management.system.dto.HealthProfileCreateDto;
 import com.smart.health.care.management.system.dto.HealthProfileDto;
 import com.smart.health.care.management.system.service.HealthProfileService;
 
-
-import com.smart.health.care.management.system.dto.HealthProfileCreateDto;
-import com.smart.health.care.management.system.dto.HealthProfileDto;
-import com.smart.health.care.management.system.service.HealthProfileService;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

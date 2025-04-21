@@ -6,11 +6,6 @@ public class DoctorDto {
     private String docName;
     private String docSpeciality;
     private String docExperience;
-    /*private String docEmail;
-    private String docPhone;
-     private String doctorPassword;
-
-     */
 
 
     //constructor
@@ -51,26 +46,6 @@ public class DoctorDto {
     public void setDocExperience(String docExperience) {
         this.docExperience = docExperience;
     }
-    /*
-    public String getDocEmail() {
-        return docEmail;
-    }
-    public void setDocEmail(String docEmail) {
-        this.docEmail = docEmail;
-    }
-    public String getDocphone() {
-        return docPhone;
-    }
-    public void setDocPhone(String docPhone) {
-        this.docPhone = docPhone;
-    }
-    public String getDoctorPassword() {
-        return doctorPassword;
-    }
-    public void setDoctorPassword(String doctorPassword) {
-        this.doctorPassword = doctorPassword;
-    }
 
-     */
 
 }

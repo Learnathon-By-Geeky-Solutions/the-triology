@@ -4,7 +4,6 @@ import com.smart.health.care.management.system.dto.AppointmentCreateDto;
 import com.smart.health.care.management.system.dto.AppointmentDto;
 import com.smart.health.care.management.system.response.CustomResponse;
 import com.smart.health.care.management.system.service.AppointmentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
