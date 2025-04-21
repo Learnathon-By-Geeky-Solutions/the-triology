@@ -1,6 +1,7 @@
 package com.smart.health.care.management.system.model;
 
 import jakarta.persistence.*;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,6 +12,7 @@ import static jakarta.persistence.GenerationType.AUTO;
 
 @Entity
 @Table(name = "Doctor")
+
 public class Doctor implements UserDetails {
 
     @Id
@@ -35,12 +37,14 @@ public class Doctor implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    // Default Constructor
-    public Doctor() {
-    }
+    public Doctor()
+    {
 
+    }
     // Parameterized Constructor
     public Doctor(String name, String specialty, String experience, String email, String phone, String password) {
+
+
         this.name = name;
         this.specialty = specialty;
         this.experience = experience;
@@ -84,7 +88,8 @@ public class Doctor implements UserDetails {
         return true;
     }
 
-    // Getters and Setters with Method Chaining
+
+
     public int getId() {
         return id;
     }
@@ -94,9 +99,11 @@ public class Doctor implements UserDetails {
         return this;
     }
 
+
     public String getName() {
         return name;
     }
+
 
     public Doctor setName(String name) {
         this.name = name;
@@ -106,6 +113,7 @@ public class Doctor implements UserDetails {
     public String getSpecialty() {
         return specialty;
     }
+
 
     public Doctor setSpecialty(String specialty) {
         this.specialty = specialty;
@@ -125,22 +133,27 @@ public class Doctor implements UserDetails {
         return email;
     }
 
+
     public Doctor setEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public String getPhone() {
+
+    public String getPhone () {
         return phone;
     }
 
-    public Doctor setPhone(String phone) {
+
+    public Doctor setPhone (String phone){
         this.phone = phone;
         return this;
     }
 
-    public Doctor setPassword(String password) {
+    public Doctor setPassword (String password){
         this.password = password;
         return this;
+
+
     }
 }

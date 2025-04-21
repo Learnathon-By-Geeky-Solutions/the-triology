@@ -2,6 +2,7 @@ package com.smart.health.care.management.system.dto;
 
 public class DoctorDto {
     private int id;
+
     private String docName;
     private String docSpeciality;
     private String docExperience;
@@ -19,6 +20,11 @@ public class DoctorDto {
         this.docSpeciality = docSpeciality;
         this.docExperience = docExperience;
 
+
+
+
+
+
     }
     public int getId() {
         return id;
@@ -26,6 +32,7 @@ public class DoctorDto {
     public void setId(int id) {
         this.id = id;
     }
+
     public String getDocName() {
         return docName;
     }
@@ -65,6 +72,5 @@ public class DoctorDto {
     }
 
      */
-
 
 }
