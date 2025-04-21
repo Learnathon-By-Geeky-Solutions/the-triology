@@ -2,19 +2,23 @@ package com.smart.health.care.management.system.dto;
 
 public class DoctorDto {
     private int id;
-    private String docname;
-    private String docspeciality;
-    private String docexperience;
-    private String docemail;
-    private String docphone;
+
+    private String docName;
+    private String docSpeciality;
+    private String docExperience;
 
 
     //constructor
-    public DoctorDto(int id, String docname, String docspeciality, String docexperience) {
+    public DoctorDto(int id, String docName, String docSpeciality, String docExperience) {
         this.id= id;
-        this.docname = docname;
-        this.docspeciality = docspeciality;
-        this.docexperience = docexperience;
+        this.docName = docName;
+        this.docSpeciality = docSpeciality;
+        this.docExperience = docExperience;
+
+
+
+
+
 
     }
     public int getId() {
@@ -23,37 +27,25 @@ public class DoctorDto {
     public void setId(int id) {
         this.id = id;
     }
-    public String getDocname() {
-        return docname;
-    }
-    public void setDocname(String docname) {
-        this.docname = docname;
-    }
-    public String getDocspeciality() {
-        return docspeciality;
-    }
-    public void setDocspeciality(String docspeciality) {
-        this.docspeciality = docspeciality;
-    }
-    public String getDocexperience() {
-        return docexperience;
-    }
-    public void setDocexperience(String docexperience) {
-        this.docexperience = docexperience;
-    }
-    public String getDocemail() {
-        return docemail;
-    }
-    public void setDocemail(String docemail) {
-        this.docemail = docemail;
-    }
-    public String getDocphone() {
-        return docphone;
-    }
-    public void setDocphone(String docphone) {
-        this.docphone = docphone;
-    }
 
+    public String getDocName() {
+        return docName;
+    }
+    public void setDocName(String docName) {
+        this.docName = docName;
+    }
+    public String getDocSpeciality() {
+        return docSpeciality;
+    }
+    public void setDocSpeciality(String docSpeciality) {
+        this.docSpeciality = docSpeciality;
+    }
+    public String getDocExperience() {
+        return docExperience;
+    }
+    public void setDocExperience(String docExperience) {
+        this.docExperience = docExperience;
+    }
 
 
 }

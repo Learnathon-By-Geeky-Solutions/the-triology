@@ -2,42 +2,66 @@ package com.smart.health.care.management.system.dto;
 
 public class DoctorCreateDto {
     private String doctorName;
-    private String doctorspeciality;
-    private String doctorexperience;
-    private String doctoremail;
-    private String doctorphone;
 
-    //getters and setters
+    private String doctorSpeciality;
+    private String doctorExperience;
+    private String doctorEmail;
+    private String doctorPhone;
+    private String doctorPassword;
+
+    // Getters and Setters with Method Chaining
     public String getDoctorName() {
         return doctorName;
     }
-    public void setDoctorName(String doctorName) {
+
+    public DoctorCreateDto setDoctorName(String doctorName) {
         this.doctorName = doctorName;
-    }
-    public String getDoctorspeciality() {
-        return doctorspeciality;
-    }
-    public void setDoctorspeciality(String doctorspeciality) {
-        this.doctorspeciality = doctorspeciality;
-    }
-    public String getDoctorexperience() {
-        return doctorexperience;
-    }
-    public void setDoctorexperience(String doctorexperience) {
-        this.doctorexperience = doctorexperience;
-    }
-    public String getDoctoremail() {
-        return doctoremail;
-    }
-    public void setDoctoremail(String doctoremail) {
-        this.doctoremail = doctoremail;
-    }
-    public String getDoctorphone() {
-        return doctorphone;
-    }
-    public void setDoctorphone(String doctorphone) {
-        this.doctorphone = doctorphone;
+        return this;
     }
 
+    public String getDoctorSpeciality() {
+        return doctorSpeciality;
+    }
+
+    public DoctorCreateDto setDoctorSpeciality(String doctorSpeciality) {
+        this.doctorSpeciality = doctorSpeciality;
+        return this;
+    }
+
+    public String getDoctorExperience() {
+        return doctorExperience;
+    }
+
+    public DoctorCreateDto setDoctorExperience(String doctorExperience) {
+        this.doctorExperience = doctorExperience;
+        return this;
+    }
+
+    public String getDoctorEmail() {
+        return doctorEmail;
+    }
+
+    public DoctorCreateDto setDoctorEmail(String doctorEmail) {
+        this.doctorEmail = doctorEmail;
+        return this;
+    }
+
+    public String getDoctorPhone() {
+        return doctorPhone;
+    }
+
+    public DoctorCreateDto setDoctorPhone(String doctorPhone) {
+        this.doctorPhone = doctorPhone;
+        return this;
+    }
+
+    public String getDoctorPassword() {
+        return doctorPassword;
+    }
+
+    public DoctorCreateDto setDoctorPassword(String doctorPassword) {
+        this.doctorPassword = doctorPassword;
+        return this;
+    }
 
 }
