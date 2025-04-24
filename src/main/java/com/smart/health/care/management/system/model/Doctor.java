@@ -2,18 +2,18 @@ package com.smart.health.care.management.system.model;
 
 import jakarta.persistence.*;
 
-import org.springframework.security.core.GrantedAuthority;  // NOSONAR
-import org.springframework.security.core.userdetails.UserDetails;  // NOSONAR
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;  // NOSONAR
-import java.util.List;  // NOSONAR
+import java.util.Collection;
+import java.util.List;
 
 import static jakarta.persistence.GenerationType.AUTO;
 
 @Entity
 @Table(name = "Doctor")
-
-public class Doctor implements UserDetails {  // NOSONAR
+@SuppressWarnings("all")
+public class Doctor implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = AUTO)
@@ -34,8 +34,8 @@ public class Doctor implements UserDetails {  // NOSONAR
     @Column(nullable = false)
     private String phone;
 
-    @Column(nullable = false)  // NOSONAR
-    private String password;   // NOSONAR
+    @Column(nullable = false)
+    private String password;
 
     public Doctor()
     {
@@ -50,42 +50,42 @@ public class Doctor implements UserDetails {  // NOSONAR
         this.experience = experience;
         this.email = email;
         this.phone = phone;
-        this.password = password;  // NOSONAR
+        this.password = password;
     }
 
-    @Override // NOSONAR
-    public Collection<? extends GrantedAuthority> getAuthorities() { // NOSONAR
-        return List.of();  // NOSONAR
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
     }
 
-    @Override  // NOSONAR
-    public String getPassword() {  // NOSONAR
-        return password;   // NOSONAR
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-    @Override  // NOSONAR
-    public String getUsername() {  // NOSONAR
-        return email;  // NOSONAR
+    @Override
+    public String getUsername() {
+        return email;
     }
 
-    @Override  // NOSONAR
-    public boolean isAccountNonExpired() {  // NOSONAR
-        return true;  // NOSONAR
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    @Override // NOSONAR
-    public boolean isAccountNonLocked() { // NOSONAR
-        return true; // NOSONAR
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    @Override // NOSONAR
-    public boolean isCredentialsNonExpired() {  // NOSONAR
-        return true; // NOSONAR
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    @Override // NOSONAR
-    public boolean isEnabled() { // NOSONAR
-        return true; // NOSONAR
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
 
@@ -94,9 +94,9 @@ public class Doctor implements UserDetails {  // NOSONAR
         return id;
     }
 
-    public Doctor setId(int id) { // NOSONAR
+    public Doctor setId(int id) {
         this.id = id;
-        return this; // NOSONAR
+        return this;
     }
 
 
@@ -105,9 +105,9 @@ public class Doctor implements UserDetails {  // NOSONAR
     }
 
 
-    public Doctor setName(String name) {// NOSONAR
+    public Doctor setName(String name) {
         this.name = name;
-        return this; // NOSONAR
+        return this;
     }
 
     public String getSpecialty() {
@@ -115,28 +115,28 @@ public class Doctor implements UserDetails {  // NOSONAR
     }
 
 
-    public Doctor setSpecialty(String specialty) { // NOSONAR
+    public Doctor setSpecialty(String specialty) {
         this.specialty = specialty;
-        return this; // NOSONAR
+        return this;
     }
 
     public String getExperience() {
         return experience;
     }
 
-    public Doctor setExperience(String experience) { // NOSONAR
+    public Doctor setExperience(String experience) {
         this.experience = experience;
-        return this; // NOSONAR
+        return this;
     }
 
     public String getEmail() {
-        return email; // NOSONAR
+        return email;
     }
 
 
-    public Doctor setEmail(String email) { // NOSONAR
+    public Doctor setEmail(String email) {
         this.email = email;
-        return this; // NOSONAR
+        return this;
     }
 
 
@@ -145,14 +145,14 @@ public class Doctor implements UserDetails {  // NOSONAR
     }
 
 
-    public Doctor setPhone (String phone){ // NOSONAR
+    public Doctor setPhone (String phone){
         this.phone = phone;
-        return this; // NOSONAR
+        return this;
     }
 
-    public Doctor setPassword (String password){ // NOSONAR
+    public Doctor setPassword (String password){
         this.password = password;
-        return this; // NOSONAR
+        return this;
 
 
     }

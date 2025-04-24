@@ -3,17 +3,18 @@ package com.smart.health.care.management.system.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.GrantedAuthority;  // NOSONAR
-import org.springframework.security.core.userdetails.UserDetails;  // NOSONAR
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Collection;
-import java.util.List;  // NOSONAR
+import java.util.List;
 
 @Entity
 @Table(name = "patient")
-public class Patient implements UserDetails{   // NOSONAR
+@SuppressWarnings("all")
+public class Patient implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,15 +23,15 @@ public class Patient implements UserDetails{   // NOSONAR
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)   // NOSONAR
+    @Column(nullable = false, unique = true)
     private String phoneNumber;
 
     @Column(nullable = false)
-    private String password;   // NOSONAR
+    private String password;
 
-    @Column(nullable = false)  // NOSONAR
+    @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    @DateTimeFormat(pattern = "dd/MM/yyyy") // NOSONAR
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateOfBirth;
 
     private int age;
@@ -42,12 +43,12 @@ public class Patient implements UserDetails{   // NOSONAR
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.password = password;  // NOSONAR
+        this.password = password;
         this.dateOfBirth = dateOfBirth;
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {  // NOSONAR
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
     }
 
@@ -56,70 +57,70 @@ public class Patient implements UserDetails{   // NOSONAR
     }
 
     @Override
-    public String getUsername() { // NOSONAR
-        return phoneNumber;   // NOSONAR
+    public String getUsername() {
+        return phoneNumber;
     }
 
     @Override
-    public boolean isAccountNonExpired() {  // NOSONAR
-        return true;  // NOSONAR
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
     @Override
-    public boolean isAccountNonLocked() {  // NOSONAR
-        return true;  // NOSONAR
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired() {  // NOSONAR
-        return true;  // NOSONAR
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
     @Override
-    public boolean isEnabled() {  // NOSONAR
-        return true;   // NOSONAR
+    public boolean isEnabled() {
+        return true;
     }
 
     public int getId() {
         return id;
     }
 
-    public Patient setId(int id) {  // NOSONAR
+    public Patient setId(int id) {
         this.id = id;
-        return this;  // NOSONAR
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public Patient setName(String name) {  // NOSONAR
+    public Patient setName(String name) {
         this.name = name;
-        return this;  // NOSONAR
+        return this;
     }
 
-    public String getPhoneNumber() {  // NOSONAR
-        return phoneNumber;   // NOSONAR
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public Patient setPhoneNumber(String phoneNumber) {// NOSONAR
+    public Patient setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        return this;  // NOSONAR
+        return this;
     }
 
-    public Patient setPassword(String password) { // NOSONAR
+    public Patient setPassword(String password) {
         this.password = password;
-        return this;   // NOSONAR
+        return this;
     }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public Patient setDateOfBirth(LocalDate dateOfBirth) {  // NOSONAR
+    public Patient setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-        this.age = calculateAge(dateOfBirth);  // NOSONAR
-        return this;   // NOSONAR
+        this.age = calculateAge(dateOfBirth);
+        return this;
     }
 
     public int getAge() {
