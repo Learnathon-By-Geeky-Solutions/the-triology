@@ -2,6 +2,7 @@ package com.smart.health.care.management.system.dto;
 
 public class DoctorCreateDto {
     private String doctorName;
+
     private String doctorSpeciality;
     private String doctorExperience;
     private String doctorEmail;
@@ -62,4 +63,5 @@ public class DoctorCreateDto {
         this.doctorPassword = doctorPassword;
         return this;
     }
+
 }

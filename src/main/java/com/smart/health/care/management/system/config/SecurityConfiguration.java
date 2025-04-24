@@ -1,4 +1,4 @@
-package com.Smart.Health.Care.Management.System.Config;
+package com.smart.health.care.management.system.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,9 +1,9 @@
-package com.Smart.Health.Care.Management.System.Controller;
+package com.smart.health.care.management.system.controller;
 
-import com.Smart.Health.Care.Management.System.DTO.HealthProfileCreateDto;
-import com.Smart.Health.Care.Management.System.DTO.HealthProfileDto;
-import com.Smart.Health.Care.Management.System.Service.HealthProfileService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.smart.health.care.management.system.dto.HealthProfileCreateDto;
+import com.smart.health.care.management.system.dto.HealthProfileDto;
+import com.smart.health.care.management.system.service.HealthProfileService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +13,11 @@ import java.util.List;
 @RequestMapping("/healthprofiles")
 public class HealthProfileController {
 
-    @Autowired
-    private HealthProfileService healthProfileService;
+    private final HealthProfileService healthProfileService;
+
+    public HealthProfileController(HealthProfileService healthProfileService) {
+        this.healthProfileService = healthProfileService;
+    }
 
     // Get HealthProfile by Patient ID
     @GetMapping("/{patientId}")

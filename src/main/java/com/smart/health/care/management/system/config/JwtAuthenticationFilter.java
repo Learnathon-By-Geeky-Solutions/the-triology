@@ -1,5 +1,5 @@
-package com.Smart.Health.Care.Management.System.Config;
-import com.Smart.Health.Care.Management.System.Service.JwtService;
+package com.smart.health.care.management.system.config;
+import com.smart.health.care.management.system.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

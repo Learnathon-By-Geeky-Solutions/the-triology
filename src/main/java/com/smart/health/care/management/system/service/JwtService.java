@@ -1,4 +1,4 @@
-package com.Smart.Health.Care.Management.System.Service;
+package com.smart.health.care.management.system.service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -1,4 +1,4 @@
-package com.Smart.Health.Care.Management.System.DTO;
+package com.smart.health.care.management.system.dto;
 
 public class LoginDoctorDto {
 

@@ -1,4 +1,4 @@
-package com.Smart.Health.Care.Management.System.Response;
+package com.smart.health.care.management.system.response;
 
 public class LoginResponse {
     private String token;

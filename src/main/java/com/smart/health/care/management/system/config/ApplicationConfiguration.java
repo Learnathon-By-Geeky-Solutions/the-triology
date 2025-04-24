@@ -1,7 +1,7 @@
-package com.Smart.Health.Care.Management.System.Config;
+package com.smart.health.care.management.system.config;
 
-import com.Smart.Health.Care.Management.System.Repository.DoctorRepo;
-import com.Smart.Health.Care.Management.System.Repository.PatientRepo;
+import com.smart.health.care.management.system.repository.DoctorRepo;
+import com.smart.health.care.management.system.repository.PatientRepo;
 
 
 import org.springframework.context.annotation.Bean;
