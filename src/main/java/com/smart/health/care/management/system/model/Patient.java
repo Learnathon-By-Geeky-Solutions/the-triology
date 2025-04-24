@@ -13,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "patient")
+@SuppressWarnings("all")
 public class Patient implements UserDetails{
 
     @Id

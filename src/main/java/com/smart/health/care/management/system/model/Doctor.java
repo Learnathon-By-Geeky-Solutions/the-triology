@@ -12,7 +12,7 @@ import static jakarta.persistence.GenerationType.AUTO;
 
 @Entity
 @Table(name = "Doctor")
-
+@SuppressWarnings("all")
 public class Doctor implements UserDetails {
 
     @Id
