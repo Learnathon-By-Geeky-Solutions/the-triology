@@ -5,10 +5,7 @@ import com.smart.health.care.management.system.config.SecurityConfiguration;
 import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -16,6 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class SecurityConfigurationTest {
 
@@ -36,6 +34,7 @@ class SecurityConfigurationTest {
         assertNotNull(corsSource);
 
         HttpServletRequest mockRequest = mock(HttpServletRequest.class);
+        when(mockRequest.getContextPath()).thenReturn("");
 
         CorsConfiguration configuration = corsSource.getCorsConfiguration(mockRequest);
         assertNotNull(configuration);
