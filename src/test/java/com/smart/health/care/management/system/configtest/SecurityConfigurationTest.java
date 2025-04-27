@@ -35,6 +35,7 @@ class SecurityConfigurationTest {
 
         HttpServletRequest mockRequest = mock(HttpServletRequest.class);
         when(mockRequest.getContextPath()).thenReturn("");
+        when(mockRequest.getRequestURI()).thenReturn("/");
 
         CorsConfiguration configuration = corsSource.getCorsConfiguration(mockRequest);
         assertNotNull(configuration);
