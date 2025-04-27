@@ -60,7 +60,7 @@ class HealthProfileControllerTest {
 
         ResponseEntity<List<HealthProfileDto>> response = healthProfileController.getAllHealthProfiles();
 
-        assertEquals(HttpStatus.OK, response.getStatusCode()); // No Content
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
         assertNull(response.getBody());
 
         verify(healthProfileService, times(1)).getAllHealthProfiles();
@@ -96,7 +96,7 @@ class HealthProfileControllerTest {
 
     @Test
     void testDeleteHealthProfile() {
-        doNothing().when(healthProfileService).deleteHealthProfile(1L);
+        when(healthProfileService.deleteHealthProfile(1L)).thenReturn("Deleted Successfully");
 
         ResponseEntity<Void> response = healthProfileController.deleteHealthProfile(1L);
 
