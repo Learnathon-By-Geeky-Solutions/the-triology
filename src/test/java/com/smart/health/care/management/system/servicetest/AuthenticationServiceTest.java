@@ -29,6 +29,9 @@ class AuthenticationServiceTest {
     private PasswordEncoder passwordEncoder;
     private AuthenticationService authenticationService;
 
+    private static final String TEST_PATIENT_PASSWORD = "fake-test-patient-pass";
+    private static final String TEST_DOCTOR_PASSWORD = "fake-test-doctor-pass";
+
     @BeforeEach
     void setUp() {
         patientRepo = mock(PatientRepo.class);
@@ -43,11 +46,11 @@ class AuthenticationServiceTest {
         RegisterUserDto registerUserDto = new RegisterUserDto()
                 .setName("John Doe")
                 .setPhoneNumber("1234567890")
-                .setPassword("password")
+                .setPassword(TEST_PATIENT_PASSWORD)
                 .setDateOfBirth(LocalDate.of(1990, 1, 1));
 
         Patient savedPatient = new Patient();
-        when(passwordEncoder.encode("password")).thenReturn("encodedPassword");
+        when(passwordEncoder.encode(TEST_PATIENT_PASSWORD)).thenReturn("encodedPatientPass");
         when(patientRepo.save(any(Patient.class))).thenReturn(savedPatient);
 
         Patient result = authenticationService.signupPatient(registerUserDto);
@@ -64,10 +67,10 @@ class AuthenticationServiceTest {
         doctorCreateDto.setDoctorExperience("10 years");
         doctorCreateDto.setDoctorEmail("drsmith@example.com");
         doctorCreateDto.setDoctorPhone("9876543210");
-        doctorCreateDto.setDoctorPassword("docpass");
+        doctorCreateDto.setDoctorPassword(TEST_DOCTOR_PASSWORD);
 
         Doctor savedDoctor = new Doctor();
-        when(passwordEncoder.encode("docpass")).thenReturn("encodedDocPass");
+        when(passwordEncoder.encode(TEST_DOCTOR_PASSWORD)).thenReturn("encodedDoctorPass");
         when(doctorRepo.save(any(Doctor.class))).thenReturn(savedDoctor);
 
         Doctor result = authenticationService.signupDoctor(doctorCreateDto);
@@ -80,7 +83,7 @@ class AuthenticationServiceTest {
     void testAuthenticatePatient() {
         LoginUserDto loginUserDto = new LoginUserDto()
                 .setPhoneNumber("1234567890")
-                .setPassword("password");
+                .setPassword(TEST_PATIENT_PASSWORD);
 
         Patient patient = new Patient();
         when(patientRepo.findByPhoneNumber("1234567890")).thenReturn(Optional.of(patient));
@@ -99,7 +102,7 @@ class AuthenticationServiceTest {
     void testAuthenticateDoctor() {
         LoginDoctorDto loginDoctorDto = new LoginDoctorDto()
                 .setEmail("drsmith@example.com")
-                .setPassword("docpass");
+                .setPassword(TEST_DOCTOR_PASSWORD);
 
         Doctor doctor = new Doctor();
         when(doctorRepo.findByEmail("drsmith@example.com")).thenReturn(Optional.of(doctor));
@@ -118,7 +121,7 @@ class AuthenticationServiceTest {
     void testAuthenticatePatient_NotFound() {
         LoginUserDto loginUserDto = new LoginUserDto()
                 .setPhoneNumber("1234567890")
-                .setPassword("password");
+                .setPassword(TEST_PATIENT_PASSWORD);
 
         when(patientRepo.findByPhoneNumber("1234567890")).thenReturn(Optional.empty());
 
@@ -129,7 +132,7 @@ class AuthenticationServiceTest {
     void testAuthenticateDoctor_NotFound() {
         LoginDoctorDto loginDoctorDto = new LoginDoctorDto()
                 .setEmail("drsmith@example.com")
-                .setPassword("docpass");
+                .setPassword(TEST_DOCTOR_PASSWORD);
 
         when(doctorRepo.findByEmail("drsmith@example.com")).thenReturn(Optional.empty());
 
