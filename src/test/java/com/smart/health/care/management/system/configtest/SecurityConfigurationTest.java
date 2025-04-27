@@ -2,6 +2,7 @@ package com.smart.health.care.management.system.configtest;
 
 import com.smart.health.care.management.system.config.JwtAuthenticationFilter;
 import com.smart.health.care.management.system.config.SecurityConfiguration;
+import jakarta.servlet.http.HttpServletMapping;
 import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,7 @@ class SecurityConfigurationTest {
         assertNotNull(corsSource);
 
         HttpServletRequest mockRequest = mock(HttpServletRequest.class);
+        HttpServletMapping mockMapping = mock(HttpServletMapping.class);
         when(mockRequest.getContextPath()).thenReturn("");
         when(mockRequest.getRequestURI()).thenReturn("/");
         when(mockRequest.getHttpServletMapping()).thenReturn(mockMapping);
