@@ -30,11 +30,18 @@ jobs:
 
       - name: Build project and generate JaCoCo report
         run: |
-          mvn clean verify jacoco:report -DskipTests=false
+          mvn clean verify jacoco:report -Dspring.profiles.active=test -DskipTests=false -X
           echo "Verifying JaCoCo report:"
           ls -la target/site/jacoco/jacoco.xml || echo "JaCoCo XML not found!"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: If build failed, show surefire reports
+        if: failure()
+        run: |
+          echo "----- Surefire Reports Start -----"
+          cat target/surefire-reports/*.txt || echo "No surefire text reports found."
+          echo "----- Surefire Reports End -----"
 
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@v2.2.0
