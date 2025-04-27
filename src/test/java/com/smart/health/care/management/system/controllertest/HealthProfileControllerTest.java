@@ -100,7 +100,7 @@ class HealthProfileControllerTest {
 
         ResponseEntity<Void> response = healthProfileController.deleteHealthProfile(1L);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
         assertNull(response.getBody());
 
         verify(healthProfileService, times(1)).deleteHealthProfile(1L);
