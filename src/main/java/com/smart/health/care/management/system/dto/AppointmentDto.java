@@ -16,6 +16,10 @@ public class AppointmentDto {
     @JsonFormat(pattern = "hh:mm a")
     private LocalTime time;
 
+    public AppointmentDto() {
+        // Needed for Jackson deserialization
+    }
+
     // Constructor
     public AppointmentDto(Long id, String patientName, String doctorName, LocalDate date, LocalTime time) {
         this.id = id;
