@@ -11,10 +11,6 @@ import com.smart.health.care.management.system.service.PatientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.smart.health.care.management.system.response.CustomResponse;
-import com.smart.health.care.management.system.service.PatientService;
-import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
