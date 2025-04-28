@@ -35,7 +35,7 @@ public class HealthProfileService {
 
     // Get health profile by patient ID
     public HealthProfileDto getHealthProfileByPatientId(Long patientId) {
-        HealthProfile profile = healthProfileRepo.findByPatient_Id(patientId);
+        HealthProfile profile = healthProfileRepo.findByPatient_Id(patientId);  // Updated to use Long
         if (profile == null) {
             throw new ResourceNotFoundException("Health profile not found for patient ID: " + patientId);
         }
@@ -45,7 +45,7 @@ public class HealthProfileService {
     // Create or update health profile
     public HealthProfileDto createHealthProfile(HealthProfileCreateDto createDto) {
         validateHealthProfileDto(createDto);
-        Patient patient = patientService.getPatientEntityById(createDto.getPatientId().intValue());
+        Patient patient = patientService.getPatientEntityById(createDto.getPatientId());  // Updated to use Long
         HealthProfile profile = healthProfileMapper.toEntity(createDto, patient);
         HealthProfile saved = healthProfileRepo.save(profile);
         return healthProfileMapper.toDto(saved);
@@ -53,7 +53,7 @@ public class HealthProfileService {
 
     // Update health profile
     public String updateHealthProfile(Long patientId, HealthProfileCreateDto updateDto) {
-        HealthProfile existingProfile = healthProfileRepo.findByPatient_Id(patientId);
+        HealthProfile existingProfile = healthProfileRepo.findByPatient_Id(patientId);  // Updated to use Long
         if (existingProfile == null) {
             throw new ResourceNotFoundException("HealthProfile for Patient ID " + patientId + " not found");
         }
@@ -70,7 +70,7 @@ public class HealthProfileService {
 
     // Delete health profile by ID
     public String deleteHealthProfile(Long id) {
-        HealthProfile hp = healthProfileRepo.findByPatient_Id(id);
+        HealthProfile hp = healthProfileRepo.findByPatient_Id(id);  // Updated to use Long
         if (hp == null) {
             throw new ResourceNotFoundException("Health Profile with ID " + id + " not found");
         }

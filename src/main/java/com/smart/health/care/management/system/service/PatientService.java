@@ -43,13 +43,13 @@ public class PatientService {
     private static final String ACTION = "Patient with ID ";
     private static final String ACTION1= " not found";
 
-    public PatientDto getPatientById(int id) {
+    public PatientDto getPatientById(Long id) {
         Patient patient = patientRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
         return patientMapper.toDto(patient);
     }
 
-    public String updatePatient(int id, PatientCreateDto patientCreateDto) {
+    public String updatePatient(Long id, PatientCreateDto patientCreateDto) {
         validatePatientCreateDto(patientCreateDto);
         Patient existingPatient = patientRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
@@ -60,7 +60,7 @@ public class PatientService {
         return "Patient updated";
     }
 
-    public String deletePatient(int id) {
+    public String deletePatient(Long id) {
         Patient patient = patientRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
         patientRepo.delete(patient);
@@ -78,7 +78,7 @@ public class PatientService {
             throw new BusinessLogicException("Date of birth cannot be in the future.");
         }
     }
-    public Patient getPatientEntityById(int id) {
+    public Patient getPatientEntityById(Long id) {
         return patientRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
     }

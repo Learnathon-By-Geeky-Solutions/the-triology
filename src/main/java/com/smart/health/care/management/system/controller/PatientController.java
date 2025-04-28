@@ -47,19 +47,19 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomResponse<PatientDto>> getPatient(@PathVariable int id) {
+    public ResponseEntity<CustomResponse<PatientDto>> getPatient(@PathVariable Long id) {
         PatientDto dto = patientService.getPatientById(id);
         return ResponseEntity.ok(new CustomResponse<>(RCOD, "Fetched patient by ID.", dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomResponse<String>> updatePatient(@PathVariable int id, @RequestBody PatientCreateDto dto) {
+    public ResponseEntity<CustomResponse<String>> updatePatient(@PathVariable Long id, @RequestBody PatientCreateDto dto) {
         String result = patientService.updatePatient(id, dto);
         return ResponseEntity.ok(new CustomResponse<>(RCOD, "Patient updated successfully.", result));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CustomResponse<String>> deletePatient(@PathVariable int id) {
+    public ResponseEntity<CustomResponse<String>> deletePatient(@PathVariable Long id) {
         String result = patientService.deletePatient(id);
         return ResponseEntity.ok(new CustomResponse<>(RCOD, "Patient deleted successfully.", result));
     }
