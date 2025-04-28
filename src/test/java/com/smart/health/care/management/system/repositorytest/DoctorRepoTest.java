@@ -59,6 +59,7 @@ class DoctorRepoTest {
         doctor.setEmail("dr.green@example.com");
         doctor.setSpeciality("Pediatrics");
         doctor.setExperience("5 years");
+        doctor.setPassword("securepassword");
         doctorRepo.save(doctor);
 
         // Act: Retrieve the doctor by email
