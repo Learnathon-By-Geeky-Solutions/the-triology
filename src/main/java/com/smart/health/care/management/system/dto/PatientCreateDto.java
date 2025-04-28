@@ -65,7 +65,7 @@ public class PatientCreateDto {
 
     // Getter for phone number (returns phone)
     public String getPhoneNumber() {
-        return phone;
+        return getPhone();
     }
 
     // Getter for dateOfBirth (if needed)
