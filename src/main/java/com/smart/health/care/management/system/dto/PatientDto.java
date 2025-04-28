@@ -1,21 +1,21 @@
 package com.smart.health.care.management.system.dto;
 
 public class PatientDto {
-    private int id;
+    private Long id;
     private String name;
     private String phoneNumber;
 
-    public PatientDto(int id, String name, String phoneNumber) {
+    public PatientDto(Long id, String name, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -8,7 +8,7 @@ class PatientDtoTest {
 
     @Test
     void testConstructorInitialization() {
-        PatientDto patientDto = new PatientDto(1, "John Doe", "01712345678");
+        PatientDto patientDto = new PatientDto(1L, "John Doe", "01712345678");
 
         assertAll(
                 () -> assertEquals(1, patientDto.getId(), "ID should be initialized correctly"),
@@ -19,9 +19,9 @@ class PatientDtoTest {
 
     @Test
     void testSettersAndGetters() {
-        PatientDto patientDto = new PatientDto(0, "", "");
+        PatientDto patientDto = new PatientDto(0L, "", "");
 
-        patientDto.setId(2);
+        patientDto.setId(2L);
         patientDto.setName("Jane Smith");
         patientDto.setPhoneNumber("01898765432");
 
