@@ -27,7 +27,16 @@ class HealthProfileControllerTest {
 
     @Test
     void testGetHealthProfileByPatientId() {
-        HealthProfileDto mockProfile = new HealthProfileDto(1L, 1L, 170.5, 70.0, "O+", List.of("Pollen"), "No history", "Healthy");
+        HealthProfileDto mockProfile = HealthProfileDto.builder()
+                .id(1L)
+                .patientId(1L)
+                .height(170.5)
+                .weight(70.0)
+                .bloodGroup("O+")
+                .allergies(List.of("Pollen"))
+                .medicalHistory("No history")
+                .conditions("Healthy")
+                .build();
 
         when(healthProfileService.getHealthProfileByPatientId(1L)).thenReturn(mockProfile);
 
@@ -41,8 +50,27 @@ class HealthProfileControllerTest {
 
     @Test
     void testGetAllHealthProfiles_WhenProfilesExist() {
-        HealthProfileDto profile1 = new HealthProfileDto(1L, 1L, 170.0, 65.0, "A+", List.of("Dust"), "None", "Normal");
-        HealthProfileDto profile2 = new HealthProfileDto(2L, 2L, 180.0, 80.0, "B+", List.of("Pollen"), "Asthma", "Needs monitoring");
+        HealthProfileDto profile1 = HealthProfileDto.builder()
+                .id(1L)
+                .patientId(1L)
+                .height(170.0)
+                .weight(65.0)
+                .bloodGroup("A+")
+                .allergies(List.of("Dust"))
+                .medicalHistory("None")
+                .conditions("Normal")
+                .build();
+
+        HealthProfileDto profile2 = HealthProfileDto.builder()
+                .id(2L)
+                .patientId(2L)
+                .height(180.0)
+                .weight(80.0)
+                .bloodGroup("B+")
+                .allergies(List.of("Pollen"))
+                .medicalHistory("Asthma")
+                .conditions("Needs monitoring")
+                .build();
 
         when(healthProfileService.getAllHealthProfiles()).thenReturn(List.of(profile1, profile2));
 
@@ -69,7 +97,16 @@ class HealthProfileControllerTest {
     @Test
     void testSaveHealthProfile() {
         HealthProfileCreateDto createDto = new HealthProfileCreateDto();
-        HealthProfileDto savedDto = new HealthProfileDto(1L, 1L, 170.5, 70.0, "O+", List.of("Pollen"), "No history", "Healthy");
+        HealthProfileDto savedDto = HealthProfileDto.builder()
+                .id(1L)
+                .patientId(1L)
+                .height(170.5)
+                .weight(70.0)
+                .bloodGroup("O+")
+                .allergies(List.of("Pollen"))
+                .medicalHistory("No history")
+                .conditions("Healthy")
+                .build();
 
         when(healthProfileService.createHealthProfile(createDto)).thenReturn(savedDto);
 
