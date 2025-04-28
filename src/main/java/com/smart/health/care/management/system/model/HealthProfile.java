@@ -115,12 +115,13 @@ public class HealthProfile {
         this.conditions = conditions;
     }
 
-    public Long getPatientId() {
+    public long getPatientId() {
         if (this.patient != null) {
-            return Long.valueOf(this.patient.getId());  // Cast int to Long
+            return this.patient.getId();  // Return as long
         }
-        return null; // If patient is not set, return null
+        return -1L; // Return a default value if patient is not set
     }
+
     // Builder pattern for HealthProfile class
     public static class Builder {
         private Long id;
