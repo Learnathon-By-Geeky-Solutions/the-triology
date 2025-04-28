@@ -4,6 +4,7 @@ import com.smart.health.care.management.system.model.Patient;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,7 +33,11 @@ class PatientTest {
         assertEquals(phoneNumber, patient.getPhoneNumber());
         assertEquals(password, patient.getPassword());
         assertEquals(dob, patient.getDateOfBirth());
-        assertEquals(LocalDate.now().getYear() - 1995, patient.getAge()); // Dynamically check age
+
+        // Correct dynamic age calculation
+        int expectedAge = Period.between(dob, LocalDate.now()).getYears();
+        assertEquals(expectedAge, patient.getAge());
+
         assertEquals(phoneNumber, patient.getUsername());
 
         // Check UserDetails methods
@@ -62,12 +67,14 @@ class PatientTest {
     void testUpdateAgeOnPersistOrUpdate() {
         // Arrange
         Patient patient = new Patient();
-        patient.setDateOfBirth(LocalDate.of(2000, 1, 1));
+        LocalDate dob = LocalDate.of(2000, 1, 1);
 
         // Act
+        patient.setDateOfBirth(dob);
         patient.updateAge();
 
         // Assert
-        assertEquals(LocalDate.now().getYear() - 2000, patient.getAge());
+        int expectedAge = Period.between(dob, LocalDate.now()).getYears();
+        assertEquals(expectedAge, patient.getAge());
     }
 }
