@@ -36,8 +36,8 @@ class PatientServiceTest {
     void testAddPatient_Success() {
         PatientCreateDto createDto = new PatientCreateDto();
         createDto.setName("John Doe");
-        createDto.setPhoneNumber("01234567890");
-        createDto.setDateOfBirth(LocalDate.of(2000, 1, 1));
+        createDto.setPhone("01234567890");
+        createDto.setDateOfBirth(LocalDate.of(1995, 5, 5).toString());
 
         Patient patient = new Patient();
         when(patientMapper.toEntity(createDto)).thenReturn(patient);
@@ -53,8 +53,8 @@ class PatientServiceTest {
     void testAddPatient_InvalidPhoneNumber() {
         PatientCreateDto createDto = new PatientCreateDto();
         createDto.setName("John Doe");
-        createDto.setPhoneNumber("01234"); // too short
-        createDto.setDateOfBirth(LocalDate.of(2000, 1, 1));
+        createDto.setPhone("01234"); // too short
+        createDto.setDateOfBirth(LocalDate.of(1995, 5, 5).toString());
 
         assertThrows(InvalidInputException.class, () -> patientService.addPatient(createDto));
     }
@@ -63,8 +63,8 @@ class PatientServiceTest {
     void testAddPatient_FutureDateOfBirth() {
         PatientCreateDto createDto = new PatientCreateDto();
         createDto.setName("John Doe");
-        createDto.setPhoneNumber("01234567890");
-        createDto.setDateOfBirth(LocalDate.now().plusDays(1)); // future date
+        createDto.setPhone("01234567890");
+        createDto.setDateOfBirth(LocalDate.now().plusDays(1).toString());
 
         assertThrows(BusinessLogicException.class, () -> patientService.addPatient(createDto));
     }
@@ -103,8 +103,8 @@ class PatientServiceTest {
 
         PatientCreateDto createDto = new PatientCreateDto();
         createDto.setName("Updated Name");
-        createDto.setPhoneNumber("09876543210");
-        createDto.setDateOfBirth(LocalDate.of(1995, 5, 5));
+        createDto.setPhone("09876543210");
+        createDto.setDateOfBirth(LocalDate.of(1995, 5, 5).toString());
 
         String result = patientService.updatePatient(1L, createDto);
 

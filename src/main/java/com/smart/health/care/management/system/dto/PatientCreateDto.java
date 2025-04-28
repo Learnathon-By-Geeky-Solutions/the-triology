@@ -2,12 +2,11 @@ package com.smart.health.care.management.system.dto;
 
 public class PatientCreateDto {
     private Long patientId;
-    private String firstName;
-    private String lastName;
     private String gender;
     private String email;
     private String phone;  // This holds the phone number
     private String address;
+    private String name;
     private String dateOfBirth;  // Optional field, add if needed
 
     // Getter and Setter for patientId
@@ -17,24 +16,6 @@ public class PatientCreateDto {
 
     public void setPatientId(Long patientId) {
         this.patientId = patientId;
-    }
-
-    // Getter and Setter for firstName
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    // Getter and Setter for lastName
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     // Getter and Setter for gender
@@ -75,8 +56,12 @@ public class PatientCreateDto {
 
     // Getter for full name (concatenates firstName and lastName)
     public String getName() {
-        return firstName + " " + lastName;
+        return name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     // Getter for phone number (returns phone)
     public String getPhoneNumber() {
