@@ -37,4 +37,32 @@ class PatientCreateDtoTest {
         assertEquals(expectedPhone, patientCreateDto.getPhone());
         assertEquals(expectedAddress, patientCreateDto.getAddress());
     }
+
+    @Test
+    void testFullName() {
+        // Arrange
+        PatientCreateDto patientCreateDto = new PatientCreateDto();
+        String expectedFirstName = "John";
+        String expectedLastName = "Doe";
+
+        // Act
+        patientCreateDto.setFirstName(expectedFirstName);
+        patientCreateDto.setLastName(expectedLastName);
+
+        // Assert
+        assertEquals("John Doe", patientCreateDto.getName());
+    }
+
+    @Test
+    void testPhoneNumber() {
+        // Arrange
+        PatientCreateDto patientCreateDto = new PatientCreateDto();
+        String expectedPhone = "+1234567890";
+
+        // Act
+        patientCreateDto.setPhone(expectedPhone);
+
+        // Assert
+        assertEquals(expectedPhone, patientCreateDto.getPhoneNumber());
+    }
 }

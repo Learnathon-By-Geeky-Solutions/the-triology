@@ -6,8 +6,9 @@ public class PatientCreateDto {
     private String lastName;
     private String gender;
     private String email;
-    private String phone;
+    private String phone;  // This holds the phone number
     private String address;
+    private String dateOfBirth;  // Optional field, add if needed
 
     // Getter and Setter for patientId
     public Long getPatientId() {
@@ -70,5 +71,25 @@ public class PatientCreateDto {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    // Getter for full name (concatenates firstName and lastName)
+    public String getName() {
+        return firstName + " " + lastName;
+    }
+
+    // Getter for phone number (returns phone)
+    public String getPhoneNumber() {
+        return phone;
+    }
+
+    // Getter for dateOfBirth (if needed)
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    // Setter for dateOfBirth
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }
