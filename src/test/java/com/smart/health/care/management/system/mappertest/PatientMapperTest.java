@@ -20,12 +20,13 @@ class PatientMapperTest {
     void setUp() {
         patientMapper = new PatientMapper();
     }
+    String date = "05/05/1995";
 
     @Test
     void testToDto() {
         // Arrange
         Patient patient = new Patient();
-        patient.setId(1);
+        patient.setId(1L);
         patient.setName("John Doe");
         patient.setPhoneNumber("+1234567890");
 
@@ -43,17 +44,18 @@ class PatientMapperTest {
         // Arrange
         PatientCreateDto dto = new PatientCreateDto();
         dto.setName("Jane Doe");
-        dto.setPhoneNumber("+0987654321");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse("05/05/1995", formatter);
-        dto.setDateOfBirth(date);
+        dto.setPhone("01624728800");
+        dto.setDateOfBirth(LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy")).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
         // Act
         Patient patient = patientMapper.toEntity(dto);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        LocalDate localDate = LocalDate.parse(date, formatter);
 
         // Assert
         assertEquals("Jane Doe", patient.getName());
-        assertEquals("+0987654321", patient.getPhoneNumber());
-        assertEquals(date, patient.getDateOfBirth());
+        assertEquals("01624728800", patient.getPhoneNumber());
+        assertEquals(localDate, patient.getDateOfBirth());
     }
 }

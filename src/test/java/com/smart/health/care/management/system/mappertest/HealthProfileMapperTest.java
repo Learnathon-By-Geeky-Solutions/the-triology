@@ -19,7 +19,7 @@ class HealthProfileMapperTest {
     void testToDto() {
         // Arrange
         Patient patient = new Patient();
-        patient.setId(1);
+        patient.setId(1L);
 
         HealthProfile healthProfile = new HealthProfile();
         healthProfile.setId(10L);
@@ -57,7 +57,7 @@ class HealthProfileMapperTest {
         createDto.setConditions("Arthritis");
 
         Patient patient = new Patient();
-        patient.setId(2);
+        patient.setId(2L);
 
         // Act
         HealthProfile entity = healthProfileMapper.toEntity(createDto, patient);
