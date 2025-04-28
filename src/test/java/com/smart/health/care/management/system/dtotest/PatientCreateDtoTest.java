@@ -12,8 +12,7 @@ class PatientCreateDtoTest {
         // Arrange
         PatientCreateDto patientCreateDto = new PatientCreateDto();
         Long expectedPatientId = 123L;
-        String expectedFirstName = "John";
-        String expectedLastName = "Doe";
+        String expectedName = "John Doe";
         String expectedGender = "Male";
         String expectedEmail = "john.doe@example.com";
         String expectedPhone = "+1234567890";
@@ -21,8 +20,7 @@ class PatientCreateDtoTest {
 
         // Act
         patientCreateDto.setPatientId(expectedPatientId);
-        patientCreateDto.setFirstName(expectedFirstName);
-        patientCreateDto.setLastName(expectedLastName);
+        patientCreateDto.setName(expectedName);
         patientCreateDto.setGender(expectedGender);
         patientCreateDto.setEmail(expectedEmail);
         patientCreateDto.setPhone(expectedPhone);
@@ -30,27 +28,24 @@ class PatientCreateDtoTest {
 
         // Assert
         assertEquals(expectedPatientId, patientCreateDto.getPatientId());
-        assertEquals(expectedFirstName, patientCreateDto.getFirstName());
-        assertEquals(expectedLastName, patientCreateDto.getLastName());
+        assertEquals(expectedName, patientCreateDto.getName());
         assertEquals(expectedGender, patientCreateDto.getGender());
         assertEquals(expectedEmail, patientCreateDto.getEmail());
-        assertEquals(expectedPhone, patientCreateDto.getPhone());
+        assertEquals(expectedPhone, patientCreateDto.getPhoneNumber());
         assertEquals(expectedAddress, patientCreateDto.getAddress());
     }
 
     @Test
-    void testFullName() {
+    void testName() {
         // Arrange
         PatientCreateDto patientCreateDto = new PatientCreateDto();
-        String expectedFirstName = "John";
-        String expectedLastName = "Doe";
+        String expectedName = "John Doe";
 
         // Act
-        patientCreateDto.setFirstName(expectedFirstName);
-        patientCreateDto.setLastName(expectedLastName);
+        patientCreateDto.setName(expectedName);
 
         // Assert
-        assertEquals("John Doe", patientCreateDto.getName());
+        assertEquals(expectedName, patientCreateDto.getName());
     }
 
     @Test
