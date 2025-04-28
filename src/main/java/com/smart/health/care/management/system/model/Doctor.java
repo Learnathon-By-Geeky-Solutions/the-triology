@@ -144,6 +144,5 @@ public class Doctor implements UserDetails {
         return this;
     }
 
-    public void setSpeciality(String cardiology) {
-    }
+
 }
