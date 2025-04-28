@@ -1,6 +1,7 @@
 package com.smart.health.care.management.system.dto;
 
 import java.util.List;
+@SuppressWarnings("all")
 public class HealthProfileCreateDto {
 
     private Long patientId;

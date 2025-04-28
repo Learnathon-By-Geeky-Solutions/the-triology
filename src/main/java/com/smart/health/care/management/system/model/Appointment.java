@@ -80,13 +80,5 @@ public class Appointment {
         this.time = time;
     }
 
-    // Placeholder method for getting patient's name.
-    // This method is currently not implemented because the 'Patient' class should provide the patient's name.
-    // If you want to implement this, you should:
-    // 1. Retrieve the patient's name from the Patient object (assuming the Patient class has a 'getName()' method).
-    // 2. If a 'getName()' method exists in the Patient class, this method can simply return patient.getName().
-    // 3. Otherwise, you should create a 'getName()' method in the Patient class to access the patient's name.
-    public boolean getPatientName() {
-        throw new UnsupportedOperationException("Method not implemented. Implement this to return patient's name.");
-    }
+
 }
