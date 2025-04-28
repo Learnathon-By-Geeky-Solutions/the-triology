@@ -43,6 +43,7 @@ class PatientRepoTest {
         patient.setName("Jane Doe");
         patient.setPhoneNumber("9876543210");
         patient.setEmail("jane.doe@example.com");
+        patient.setPassword("securepassword");
         patient.setDateOfBirth(LocalDate.of(1990, 8, 20));
         patientRepo.save(patient);
 

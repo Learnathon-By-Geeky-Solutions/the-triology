@@ -42,6 +42,9 @@ class DoctorRepoTest {
         doctor.setEmail("dr.brown@example.com");
         doctor.setSpeciality("Neurology");
         doctor.setExperience("8 years");
+        doctor.setPassword("securepassword");
+        doctor.setSpecialty("Cardiology");
+        doctor.setPhone("0123456789");
         doctorRepo.save(doctor);
 
         // Act: Retrieve the doctor by ID
@@ -62,6 +65,8 @@ class DoctorRepoTest {
         doctor.setSpeciality("Pediatrics");
         doctor.setExperience("5 years");
         doctor.setPassword("securepassword");
+        doctor.setSpecialty("Cardiology");
+        doctor.setPhone("0123456789");
         doctorRepo.save(doctor);
 
         // Act: Retrieve the doctor by email
@@ -81,6 +86,9 @@ class DoctorRepoTest {
         doctor.setEmail("dr.white@example.com");
         doctor.setSpeciality("Orthopedics");
         doctor.setExperience("15 years");
+        doctor.setPassword("securepassword");
+        doctor.setSpecialty("Cardiology");
+        doctor.setPhone("0123456789");
         Doctor savedDoctor = doctorRepo.save(doctor);
 
         // Act: Delete the saved doctor object
