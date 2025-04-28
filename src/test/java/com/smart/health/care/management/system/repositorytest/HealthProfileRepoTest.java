@@ -33,6 +33,8 @@ class HealthProfileRepoTest {
         testPatient.setPhoneNumber("1234567890");
         testPatient.setEmail("john.doe@example.com");
         testPatient.setDateOfBirth(LocalDate.of(1985, 5, 15));
+        testPatient.setPhoneNumber("0123456789");
+        testPatient.setPassword("somePassword");
         patientRepo.save(testPatient);
 
         // Create a HealthProfile associated with the testPatient

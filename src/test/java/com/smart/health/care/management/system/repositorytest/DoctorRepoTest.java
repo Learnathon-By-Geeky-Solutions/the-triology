@@ -21,6 +21,8 @@ class DoctorRepoTest {
         doctor.setName("Dr. Smith");
         doctor.setEmail("dr.smith@example.com");
         doctor.setSpeciality("Cardiology");  // Use setSpeciality method
+        doctor.setPhone("0123456789");
+        doctor.setPassword("securepassword");
         doctor.setExperience("10 years");
 
         // Act: Save the doctor object to the repository

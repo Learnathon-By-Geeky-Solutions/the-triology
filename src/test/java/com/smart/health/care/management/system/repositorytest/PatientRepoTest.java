@@ -24,6 +24,7 @@ class PatientRepoTest {
         patient.setName("John Doe");
         patient.setPhoneNumber("1234567890");
         patient.setEmail("john.doe@example.com");
+        patient.setPassword("securepassword");
         patient.setDateOfBirth(LocalDate.of(1985, 5, 15));
 
         // Act
