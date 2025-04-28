@@ -5,7 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HealthProfileRepo extends JpaRepository<HealthProfile, Integer> {
+public interface HealthProfileRepo extends JpaRepository<HealthProfile, Long> {
 
-    HealthProfile findByPatientId(Integer patientId);
+    HealthProfile findByPatient_Id(Long patientId);
+
+
 }

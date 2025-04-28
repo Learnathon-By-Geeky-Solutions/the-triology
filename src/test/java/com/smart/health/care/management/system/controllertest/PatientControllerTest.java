@@ -63,8 +63,8 @@ class PatientControllerTest {
 
     @Test
     void testGetPatients() {
-        PatientDto dto1 = new PatientDto(1, "Alice", "01710000000");
-        PatientDto dto2 = new PatientDto(2, "Bob", "01810000000");
+        PatientDto dto1 = new PatientDto(1L, "Alice", "01710000000");
+        PatientDto dto2 = new PatientDto(2L, "Bob", "01810000000");
 
         when(patientService.getAllPatients()).thenReturn(List.of(dto1, dto2));
 
@@ -79,43 +79,43 @@ class PatientControllerTest {
 
     @Test
     void testGetPatientById() {
-        PatientDto dto = new PatientDto(1, "Alice", "01710000000");
+        PatientDto dto = new PatientDto(1L, "Alice", "01710000000");
 
-        when(patientService.getPatientById(1)).thenReturn(dto);
+        when(patientService.getPatientById(1L)).thenReturn(dto);
 
-        ResponseEntity<CustomResponse<PatientDto>> response = patientController.getPatient(1);
+        ResponseEntity<CustomResponse<PatientDto>> response = patientController.getPatient(1L);
 
         assertEquals("S0000", response.getBody().getResponseCode());
         assertEquals("Fetched patient by ID.", response.getBody().getResponseMessage());
         assertEquals(dto, response.getBody().getData());
 
-        verify(patientService, times(1)).getPatientById(1);
+        verify(patientService, times(1)).getPatientById(1L);
     }
 
     @Test
     void testUpdatePatient() {
         PatientCreateDto updateDto = new PatientCreateDto();
-        when(patientService.updatePatient(1, updateDto)).thenReturn("Updated Successfully");
+        when(patientService.updatePatient(1L, updateDto)).thenReturn("Updated Successfully");
 
-        ResponseEntity<CustomResponse<String>> response = patientController.updatePatient(1, updateDto);
+        ResponseEntity<CustomResponse<String>> response = patientController.updatePatient(1L, updateDto);
 
         assertEquals("S0000", response.getBody().getResponseCode());
         assertEquals("Patient updated successfully.", response.getBody().getResponseMessage());
         assertEquals("Updated Successfully", response.getBody().getData());
 
-        verify(patientService, times(1)).updatePatient(1, updateDto);
+        verify(patientService, times(1)).updatePatient(1L, updateDto);
     }
 
     @Test
     void testDeletePatient() {
-        when(patientService.deletePatient(1)).thenReturn("Deleted Successfully");
+        when(patientService.deletePatient(1L)).thenReturn("Deleted Successfully");
 
-        ResponseEntity<CustomResponse<String>> response = patientController.deletePatient(1);
+        ResponseEntity<CustomResponse<String>> response = patientController.deletePatient(1L);
 
         assertEquals("S0000", response.getBody().getResponseCode());
         assertEquals("Patient deleted successfully.", response.getBody().getResponseMessage());
         assertEquals("Deleted Successfully", response.getBody().getData());
 
-        verify(patientService, times(1)).deletePatient(1);
+        verify(patientService, times(1)).deletePatient(1L);
     }
 }

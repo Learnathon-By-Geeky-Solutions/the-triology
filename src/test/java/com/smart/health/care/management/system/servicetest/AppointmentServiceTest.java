@@ -44,7 +44,7 @@ class AppointmentServiceTest {
     @Test
     void testAddAppointment_Success() {
         AppointmentCreateDto dto = new AppointmentCreateDto();
-        dto.setPatientId(1);
+        dto.setPatientId(1L);
         dto.setDoctorId(2);
         dto.setDate(LocalDate.now().plusDays(1));
         dto.setTime(LocalTime.of(10, 0));
@@ -53,7 +53,7 @@ class AppointmentServiceTest {
         Doctor doctor = new Doctor();
         Appointment appointment = new Appointment();
 
-        when(patientRepo.findById(1)).thenReturn(Optional.of(patient));
+        when(patientRepo.findById(1L)).thenReturn(Optional.of(patient));
         when(doctorRepo.findById(2)).thenReturn(Optional.of(doctor));
         when(appointmentMapper.toEntity(dto, patient, doctor)).thenReturn(appointment);
 
@@ -66,7 +66,7 @@ class AppointmentServiceTest {
     @Test
     void testAddAppointment_InvalidDate() {
         AppointmentCreateDto dto = new AppointmentCreateDto();
-        dto.setPatientId(1);
+        dto.setPatientId(1L);
         dto.setDoctorId(2);
         dto.setDate(LocalDate.now().minusDays(1)); // Past date
         dto.setTime(LocalTime.of(10, 0));
@@ -78,7 +78,7 @@ class AppointmentServiceTest {
     @Test
     void testAddAppointment_NullTime() {
         AppointmentCreateDto dto = new AppointmentCreateDto();
-        dto.setPatientId(1);
+        dto.setPatientId(1L);
         dto.setDoctorId(2);
         dto.setDate(LocalDate.now().plusDays(1));
         dto.setTime(null);
@@ -125,7 +125,7 @@ class AppointmentServiceTest {
     @Test
     void testUpdateAppointment_Success() {
         AppointmentCreateDto dto = new AppointmentCreateDto();
-        dto.setPatientId(1);
+        dto.setPatientId(1L);
         dto.setDoctorId(2);
         dto.setDate(LocalDate.now().plusDays(1));
         dto.setTime(LocalTime.of(10, 0));
@@ -135,7 +135,7 @@ class AppointmentServiceTest {
         Doctor doctor = new Doctor();
 
         when(appointmentRepo.findById(1L)).thenReturn(Optional.of(existingAppointment));
-        when(patientRepo.findById(1)).thenReturn(Optional.of(patient));
+        when(patientRepo.findById(1L)).thenReturn(Optional.of(patient));
         when(doctorRepo.findById(2)).thenReturn(Optional.of(doctor));
 
         String result = appointmentService.updateAppointment(1L, dto);

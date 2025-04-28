@@ -11,11 +11,11 @@ import com.smart.health.care.management.system.repository.PatientRepo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
 public class PatientService {
-
 
     private final PatientRepo patientRepo;
     private final PatientMapper patientMapper;
@@ -24,7 +24,6 @@ public class PatientService {
         this.patientRepo = patientRepo;
         this.patientMapper = patientMapper;
     }
-
 
     public String addPatient(PatientCreateDto patientCreateDto) {
         validatePatientCreateDto(patientCreateDto);
@@ -41,26 +40,27 @@ public class PatientService {
     }
 
     private static final String ACTION = "Patient with ID ";
-    private static final String ACTION1= " not found";
+    private static final String ACTION1 = " not found";
 
-    public PatientDto getPatientById(int id) {
+    public PatientDto getPatientById(Long id) {
         Patient patient = patientRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
         return patientMapper.toDto(patient);
     }
 
-    public String updatePatient(int id, PatientCreateDto patientCreateDto) {
+    public String updatePatient(Long id, PatientCreateDto patientCreateDto) {
         validatePatientCreateDto(patientCreateDto);
         Patient existingPatient = patientRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
+
         existingPatient.setName(patientCreateDto.getName());
         existingPatient.setPhoneNumber(patientCreateDto.getPhoneNumber());
-        existingPatient.setDateOfBirth(patientCreateDto.getDateOfBirth());
+        existingPatient.setDateOfBirth(parseDateOfBirth(patientCreateDto.getDateOfBirth()));  // Parse and set the dateOfBirth
         patientRepo.save(existingPatient);
         return "Patient updated";
     }
 
-    public String deletePatient(int id) {
+    public String deletePatient(Long id) {
         Patient patient = patientRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
         patientRepo.delete(patient);
@@ -74,12 +74,19 @@ public class PatientService {
         if (dto.getPhoneNumber() == null || dto.getPhoneNumber().trim().length() < 11) {
             throw new InvalidInputException("Phone number must be at least 11 digits.");
         }
-        if (dto.getDateOfBirth() == null || dto.getDateOfBirth().isAfter(LocalDate.now())) {
+        if (dto.getDateOfBirth() == null || parseDateOfBirth(dto.getDateOfBirth()).isAfter(LocalDate.now())) {
             throw new BusinessLogicException("Date of birth cannot be in the future.");
         }
     }
-    public Patient getPatientEntityById(int id) {
+
+    public Patient getPatientEntityById(Long id) {
         return patientRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
+    }
+
+    // Method to parse the string date to LocalDate
+    private LocalDate parseDateOfBirth(String dateOfBirth) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(dateOfBirth, formatter);  // Parse the string to LocalDate
     }
 }

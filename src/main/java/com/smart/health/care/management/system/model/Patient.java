@@ -14,14 +14,12 @@ import java.util.List;
 @Entity
 @Table(name = "patient")
 @SuppressWarnings("all")
-public class Patient implements UserDetails{
+public class Patient implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
-    @Column(nullable = false)
-    private String name;
 
     @Column(nullable = false, unique = true)
     private String phoneNumber;
@@ -30,23 +28,27 @@ public class Patient implements UserDetails{
     private String password;
 
     @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateOfBirth;
 
     private int age;
 
+    // Constructor
     public Patient() {
     }
 
-    public Patient(int id, String name, String phoneNumber, String password, LocalDate dateOfBirth) {
+    public Patient(Long id, String name, String phoneNumber, String password, LocalDate dateOfBirth) {
         this.id = id;
-        this.name = name;
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
     }
 
+    // Override methods for UserDetails
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
@@ -58,7 +60,7 @@ public class Patient implements UserDetails{
 
     @Override
     public String getUsername() {
-        return phoneNumber;
+        return phoneNumber; // Used phone number as username
     }
 
     @Override
@@ -81,11 +83,12 @@ public class Patient implements UserDetails{
         return true;
     }
 
-    public int getId() {
+    // Getters and Setters
+    public Long getId() {
         return id;
     }
 
-    public Patient setId(int id) {
+    public Patient setId(Long id) {
         this.id = id;
         return this;
     }
@@ -135,5 +138,9 @@ public class Patient implements UserDetails{
 
     private int calculateAge(LocalDate dob) {
         return (dob != null) ? Period.between(dob, LocalDate.now()).getYears() : 0;
+    }
+
+    public void setEmail(String email) {
+        // You can implement this if needed
     }
 }

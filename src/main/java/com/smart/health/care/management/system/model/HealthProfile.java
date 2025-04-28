@@ -35,10 +35,9 @@ public class HealthProfile {
     @Column(nullable = true)
     private String conditions;
 
-
+    // Constructor
     public HealthProfile() {
     }
-
 
     private HealthProfile(Builder builder) {
         this.id = builder.id;
@@ -51,63 +50,7 @@ public class HealthProfile {
         this.conditions = builder.conditions;
     }
 
-
-    public static class Builder {
-        private Long id;
-        private Patient patient;
-        private double height;
-        private double weight;
-        private String bloodGroup;
-        private List<String> allergies;
-        private String medicalHistory;
-        private String conditions;
-
-        public Builder id(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder patient(Patient patient) {
-            this.patient = patient;
-            return this;
-        }
-
-        public Builder height(double height) {
-            this.height = height;
-            return this;
-        }
-
-        public Builder weight(double weight) {
-            this.weight = weight;
-            return this;
-        }
-
-        public Builder bloodGroup(String bloodGroup) {
-            this.bloodGroup = bloodGroup;
-            return this;
-        }
-
-        public Builder allergies(List<String> allergies) {
-            this.allergies = allergies;
-            return this;
-        }
-
-        public Builder medicalHistory(String medicalHistory) {
-            this.medicalHistory = medicalHistory;
-            return this;
-        }
-
-        public Builder conditions(String conditions) {
-            this.conditions = conditions;
-            return this;
-        }
-
-        public HealthProfile build() {
-            return new HealthProfile(this);
-        }
-    }
-
-
+    // Getter and Setter methods
     public Long getId() {
         return id;
     }
@@ -170,5 +113,68 @@ public class HealthProfile {
 
     public void setConditions(String conditions) {
         this.conditions = conditions;
+    }
+
+    public long getPatientId() {
+        if (this.patient != null) {
+            return this.patient.getId();  // Return as long
+        }
+        return -1L; // Return a default value if patient is not set
+    }
+
+    // Builder pattern for HealthProfile class
+    public static class Builder {
+        private Long id;
+        private Patient patient;
+        private double height;
+        private double weight;
+        private String bloodGroup;
+        private List<String> allergies;
+        private String medicalHistory;
+        private String conditions;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder patient(Patient patient) {
+            this.patient = patient;
+            return this;
+        }
+
+        public Builder height(double height) {
+            this.height = height;
+            return this;
+        }
+
+        public Builder weight(double weight) {
+            this.weight = weight;
+            return this;
+        }
+
+        public Builder bloodGroup(String bloodGroup) {
+            this.bloodGroup = bloodGroup;
+            return this;
+        }
+
+        public Builder allergies(List<String> allergies) {
+            this.allergies = allergies;
+            return this;
+        }
+
+        public Builder medicalHistory(String medicalHistory) {
+            this.medicalHistory = medicalHistory;
+            return this;
+        }
+
+        public Builder conditions(String conditions) {
+            this.conditions = conditions;
+            return this;
+        }
+
+        public HealthProfile build() {
+            return new HealthProfile(this);
+        }
     }
 }
