@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HealthProfileRepo extends JpaRepository<HealthProfile, Integer> {
 
-    HealthProfile findByPatientId(Integer id);
+    HealthProfile findByPatient_Id(Long patientId);
 }

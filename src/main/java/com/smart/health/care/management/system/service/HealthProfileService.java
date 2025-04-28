@@ -15,7 +15,6 @@ import java.util.List;
 @Service
 public class HealthProfileService {
 
-
     private final HealthProfileRepo healthProfileRepo;
     private final HealthProfileMapper healthProfileMapper;
     private final PatientService patientService;
@@ -26,8 +25,7 @@ public class HealthProfileService {
         this.patientService = patientService;
     }
 
-
-
+    // Get all health profiles
     public List<HealthProfileDto> getAllHealthProfiles() {
         return healthProfileRepo.findAll()
                 .stream()
@@ -35,26 +33,27 @@ public class HealthProfileService {
                 .toList();
     }
 
-    // Method to get a HealthProfile by Patient ID
+    // Get health profile by patient ID
     public HealthProfileDto getHealthProfileByPatientId(Long patientId) {
-        HealthProfile profile = healthProfileRepo.findByPatientId(patientId.intValue());
+        HealthProfile profile = healthProfileRepo.findByPatient_Id(patientId);
         if (profile == null) {
             throw new ResourceNotFoundException("Health profile not found for patient ID: " + patientId);
         }
         return healthProfileMapper.toDto(profile);
     }
 
-    // Method to save or update a HealthProfile
+    // Create or update health profile
     public HealthProfileDto createHealthProfile(HealthProfileCreateDto createDto) {
         validateHealthProfileDto(createDto);
-        Patient patient = patientService.getPatientEntityById(Math.toIntExact(createDto.getPatientId()));
+        Patient patient = patientService.getPatientEntityById(createDto.getPatientId().intValue());
         HealthProfile profile = healthProfileMapper.toEntity(createDto, patient);
         HealthProfile saved = healthProfileRepo.save(profile);
         return healthProfileMapper.toDto(saved);
     }
 
+    // Update health profile
     public String updateHealthProfile(Long patientId, HealthProfileCreateDto updateDto) {
-        HealthProfile existingProfile = healthProfileRepo.findByPatientId(Math.toIntExact(patientId));
+        HealthProfile existingProfile = healthProfileRepo.findByPatient_Id(patientId);
         if (existingProfile == null) {
             throw new ResourceNotFoundException("HealthProfile for Patient ID " + patientId + " not found");
         }
@@ -67,14 +66,11 @@ public class HealthProfileService {
         existingProfile.setMedicalHistory(updateDto.getMedicalHistory());
         healthProfileRepo.save(existingProfile);
         return "Health Profile updated successfully";
-
-
     }
 
-
-    // Method to delete a HealthProfile by ID
+    // Delete health profile by ID
     public String deleteHealthProfile(Long id) {
-        HealthProfile hp = healthProfileRepo.findByPatientId(Math.toIntExact(id));
+        HealthProfile hp = healthProfileRepo.findByPatient_Id(id);
         if (hp == null) {
             throw new ResourceNotFoundException("Health Profile with ID " + id + " not found");
         }
@@ -82,23 +78,22 @@ public class HealthProfileService {
         return "Successfully deleted Health Profile with ID " + id;
     }
 
-    private void validateHealthProfileDto(HealthProfileCreateDto dto){
+    // Validate health profile input
+    private void validateHealthProfileDto(HealthProfileCreateDto dto) {
         if (dto.getPatientId() == null || dto.getPatientId() <= 0) {
             throw new InvalidInputException("Patient ID is required");
         }
         if (dto.getBloodGroup() == null || dto.getBloodGroup().trim().isEmpty()) {
             throw new InvalidInputException("Blood group must not be empty.");
         }
-        if(dto.getConditions() == null || dto.getConditions().trim().isEmpty()) {
+        if (dto.getConditions() == null || dto.getConditions().trim().isEmpty()) {
             throw new InvalidInputException("Conditions must not be empty.");
         }
-        if (dto.getHeight()<= 0 ) {
+        if (dto.getHeight() <= 0) {
             throw new InvalidInputException("Height must be a positive number.");
         }
-        if(dto.getWeight()<=0) {
+        if (dto.getWeight() <= 0) {
             throw new InvalidInputException("Weight must be a positive number.");
         }
-
     }
 }
-
