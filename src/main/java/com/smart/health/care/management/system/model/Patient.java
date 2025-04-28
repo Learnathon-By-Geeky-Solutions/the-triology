@@ -20,17 +20,15 @@ public class Patient implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
-    private String firstName; // Separate first name field
-
-    @Column(nullable = false)
-    private String lastName; // Separate last name field
 
     @Column(nullable = false, unique = true)
     private String phoneNumber;
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String name;
 
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -43,10 +41,8 @@ public class Patient implements UserDetails {
     public Patient() {
     }
 
-    public Patient(Long id, String firstName, String lastName, String phoneNumber, String password, LocalDate dateOfBirth) {
+    public Patient(Long id, String name, String phoneNumber, String password, LocalDate dateOfBirth) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
@@ -97,21 +93,12 @@ public class Patient implements UserDetails {
         return this;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public Patient setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public Patient setLastName(String lastName) {
-        this.lastName = lastName;
+    public Patient setName(String name) {
+        this.name = name;
         return this;
     }
 

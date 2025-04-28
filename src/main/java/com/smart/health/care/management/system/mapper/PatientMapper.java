@@ -14,7 +14,7 @@ public class PatientMapper {
     // Map Entity -> DTO (for response)
     public PatientDto toDto(Patient patient) {
         // If patient has separate first and last name fields, concatenate them for the full name
-        String fullName = patient.getFirstName() + " " + patient.getLastName();  // Assuming Patient has firstName and lastName fields
+        String fullName = patient.getName(); // Assuming Patient has firstName and lastName fields
 
         return new PatientDto(
                 patient.getId(),
@@ -27,14 +27,8 @@ public class PatientMapper {
     public Patient toEntity(PatientCreateDto dto) {
         Patient patient = new Patient();
 
-        // Split full name into first and last name
-        String[] nameParts = dto.getName().split(" ");
-        patient.setFirstName(nameParts[0]);
-        if (nameParts.length > 1) {
-            patient.setLastName(nameParts[1]);
-        } else {
-            patient.setLastName("");  // If only one part of name exists, set last name as empty string
-        }
+        // Directly set the full name
+        patient.setName(dto.getName());
 
         patient.setPhoneNumber(dto.getPhoneNumber());  // Assuming phoneNumber in PatientCreateDto
         patient.setDateOfBirth(parseDateOfBirth(dto.getDateOfBirth()));  // Parse and set the dateOfBirth
