@@ -35,6 +35,7 @@ public class HealthProfileService {
 
     // Get health profile by patient ID
     public HealthProfileDto getHealthProfileByPatientId(Long patientId) {
+        // Ensure passing patientId as Long
         HealthProfile profile = healthProfileRepo.findByPatient_Id(patientId);  // Updated to use Long
         if (profile == null) {
             throw new ResourceNotFoundException("Health profile not found for patient ID: " + patientId);
@@ -45,6 +46,7 @@ public class HealthProfileService {
     // Create or update health profile
     public HealthProfileDto createHealthProfile(HealthProfileCreateDto createDto) {
         validateHealthProfileDto(createDto);
+        // Ensure the Patient ID is passed as Long
         Patient patient = patientService.getPatientEntityById(createDto.getPatientId());  // Updated to use Long
         HealthProfile profile = healthProfileMapper.toEntity(createDto, patient);
         HealthProfile saved = healthProfileRepo.save(profile);
@@ -53,6 +55,7 @@ public class HealthProfileService {
 
     // Update health profile
     public String updateHealthProfile(Long patientId, HealthProfileCreateDto updateDto) {
+        // Updated to use Long for patientId
         HealthProfile existingProfile = healthProfileRepo.findByPatient_Id(patientId);  // Updated to use Long
         if (existingProfile == null) {
             throw new ResourceNotFoundException("HealthProfile for Patient ID " + patientId + " not found");
@@ -70,6 +73,7 @@ public class HealthProfileService {
 
     // Delete health profile by ID
     public String deleteHealthProfile(Long id) {
+        // Ensure passing id as Long
         HealthProfile hp = healthProfileRepo.findByPatient_Id(id);  // Updated to use Long
         if (hp == null) {
             throw new ResourceNotFoundException("Health Profile with ID " + id + " not found");

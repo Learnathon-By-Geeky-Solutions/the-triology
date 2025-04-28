@@ -18,7 +18,7 @@ public class Patient implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -39,7 +39,7 @@ public class Patient implements UserDetails{
     public Patient() {
     }
 
-    public Patient(int id, String name, String phoneNumber, String password, LocalDate dateOfBirth) {
+    public Patient(Long id, String name, String phoneNumber, String password, LocalDate dateOfBirth) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -81,11 +81,11 @@ public class Patient implements UserDetails{
         return true;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public Patient setId(int id) {
+    public Patient setId(Long id) {
         this.id = id;
         return this;
     }
