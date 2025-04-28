@@ -1,41 +1,80 @@
 package com.smart.health.care.management.system.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDate;
-
 public class PatientCreateDto {
-
+    private Long patientId;
+    private String gender;
+    private String email;
+    private String phone;  // This holds the phone number
+    private String address;
     private String name;
-    private String phoneNumber;
+    private String dateOfBirth;  // Optional field, add if needed
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dateOfBirth;
+    // Getter and Setter for patientId
+    public Long getPatientId() {
+        return patientId;
+    }
 
-    // Getters and Setters
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
+    }
+
+    // Getter and Setter for gender
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    // Getter and Setter for email
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    // Getter and Setter for phone
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    // Getter and Setter for address
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    // Getter for full name (concatenates firstName and lastName)
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
+
+    // Getter for phone number (returns phone)
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public LocalDate getDateOfBirth() {
+    // Getter for dateOfBirth (if needed)
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    // Setter for dateOfBirth
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 }

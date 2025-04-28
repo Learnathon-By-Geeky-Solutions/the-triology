@@ -6,7 +6,7 @@ import java.time.LocalTime;
 
 public class AppointmentCreateDto {
 
-    private int patientId;
+    private Long patientId;
     private int doctorId;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
@@ -16,11 +16,11 @@ public class AppointmentCreateDto {
     private LocalTime time;
 
     // Getters and Setters
-    public int getPatientId() {
+    public Long getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(int patientId) {
+    public void setPatientId(Long patientId) {
         this.patientId = patientId;
     }
 

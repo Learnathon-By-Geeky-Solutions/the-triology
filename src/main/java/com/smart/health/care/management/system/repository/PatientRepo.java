@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface PatientRepo extends JpaRepository<Patient, Integer> {
+public interface PatientRepo extends JpaRepository<Patient, Long> {
     Optional<Patient> findByPhoneNumber(String phoneNumber);
 }
