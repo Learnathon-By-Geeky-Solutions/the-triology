@@ -37,8 +37,8 @@ public class PatientMapper {
     }
 
     // Method to parse the string date to LocalDate
-    private LocalDate parseDateOfBirth(String dateOfBirth) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return LocalDate.parse(dateOfBirth, formatter);  // Parse the string to LocalDate
+    private LocalDate parseDateOfBirth(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(dateString, formatter);
     }
 }
