@@ -79,34 +79,34 @@ class PatientServiceTest {
     @Test
     void testGetPatientById_Success() {
         Patient patient = new Patient();
-        when(patientRepo.findById(1)).thenReturn(Optional.of(patient));
+        when(patientRepo.findById(1L)).thenReturn(Optional.of(patient));
 
-        PatientDto dto = new PatientDto(1, "John Doe", "01234567890");
+        PatientDto dto = new PatientDto(1L, "John Doe", "01234567890");
         when(patientMapper.toDto(patient)).thenReturn(dto);
 
-        PatientDto result = patientService.getPatientById(1);
+        PatientDto result = patientService.getPatientById(1L);
 
         assertEquals("John Doe", result.getName());
     }
 
     @Test
     void testGetPatientById_NotFound() {
-        when(patientRepo.findById(1)).thenReturn(Optional.empty());
+        when(patientRepo.findById(1L)).thenReturn(Optional.empty());
 
-        assertThrows(ResourceNotFoundException.class, () -> patientService.getPatientById(1));
+        assertThrows(ResourceNotFoundException.class, () -> patientService.getPatientById(1L));
     }
 
     @Test
     void testUpdatePatient_Success() {
         Patient existingPatient = new Patient();
-        when(patientRepo.findById(1)).thenReturn(Optional.of(existingPatient));
+        when(patientRepo.findById(1L)).thenReturn(Optional.of(existingPatient));
 
         PatientCreateDto createDto = new PatientCreateDto();
         createDto.setName("Updated Name");
         createDto.setPhoneNumber("09876543210");
         createDto.setDateOfBirth(LocalDate.of(1995, 5, 5));
 
-        String result = patientService.updatePatient(1, createDto);
+        String result = patientService.updatePatient(1L, createDto);
 
         assertEquals("Patient updated", result);
         verify(patientRepo).save(existingPatient);
@@ -115,9 +115,9 @@ class PatientServiceTest {
     @Test
     void testDeletePatient_Success() {
         Patient patient = new Patient();
-        when(patientRepo.findById(1)).thenReturn(Optional.of(patient));
+        when(patientRepo.findById(1L)).thenReturn(Optional.of(patient));
 
-        String result = patientService.deletePatient(1);
+        String result = patientService.deletePatient(1L);
 
         assertEquals("Patient deleted", result);
         verify(patientRepo).delete(patient);
@@ -125,25 +125,25 @@ class PatientServiceTest {
 
     @Test
     void testDeletePatient_NotFound() {
-        when(patientRepo.findById(1)).thenReturn(Optional.empty());
+        when(patientRepo.findById(1L)).thenReturn(Optional.empty());
 
-        assertThrows(ResourceNotFoundException.class, () -> patientService.deletePatient(1));
+        assertThrows(ResourceNotFoundException.class, () -> patientService.deletePatient(1L));
     }
 
     @Test
     void testGetPatientEntityById_Success() {
         Patient patient = new Patient();
-        when(patientRepo.findById(1)).thenReturn(Optional.of(patient));
+        when(patientRepo.findById(1L)).thenReturn(Optional.of(patient));
 
-        Patient result = patientService.getPatientEntityById(1);
+        Patient result = patientService.getPatientEntityById(1L);
 
         assertNotNull(result);
     }
 
     @Test
     void testGetPatientEntityById_NotFound() {
-        when(patientRepo.findById(1)).thenReturn(Optional.empty());
+        when(patientRepo.findById(1L)).thenReturn(Optional.empty());
 
-        assertThrows(ResourceNotFoundException.class, () -> patientService.getPatientEntityById(1));
+        assertThrows(ResourceNotFoundException.class, () -> patientService.getPatientEntityById(1L));
     }
 }
