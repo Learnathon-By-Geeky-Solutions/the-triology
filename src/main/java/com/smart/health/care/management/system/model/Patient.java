@@ -14,14 +14,17 @@ import java.util.List;
 @Entity
 @Table(name = "patient")
 @SuppressWarnings("all")
-public class Patient implements UserDetails{
+public class Patient implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String firstName; // Separate first name field
+
+    @Column(nullable = false)
+    private String lastName; // Separate last name field
 
     @Column(nullable = false, unique = true)
     private String phoneNumber;
@@ -36,17 +39,20 @@ public class Patient implements UserDetails{
 
     private int age;
 
+    // Constructor
     public Patient() {
     }
 
-    public Patient(Long id, String name, String phoneNumber, String password, LocalDate dateOfBirth) {
+    public Patient(Long id, String firstName, String lastName, String phoneNumber, String password, LocalDate dateOfBirth) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
     }
 
+    // Override methods for UserDetails
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
@@ -58,7 +64,7 @@ public class Patient implements UserDetails{
 
     @Override
     public String getUsername() {
-        return phoneNumber;
+        return phoneNumber; // Used phone number as username
     }
 
     @Override
@@ -81,6 +87,7 @@ public class Patient implements UserDetails{
         return true;
     }
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -90,12 +97,21 @@ public class Patient implements UserDetails{
         return this;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public Patient setName(String name) {
-        this.name = name;
+    public Patient setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Patient setLastName(String lastName) {
+        this.lastName = lastName;
         return this;
     }
 
@@ -137,6 +153,7 @@ public class Patient implements UserDetails{
         return (dob != null) ? Period.between(dob, LocalDate.now()).getYears() : 0;
     }
 
-    public void setEmail(String mail) {
+    public void setEmail(String email) {
+        // You can implement this if needed
     }
 }
