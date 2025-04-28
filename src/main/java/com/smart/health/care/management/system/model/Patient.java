@@ -136,4 +136,7 @@ public class Patient implements UserDetails{
     private int calculateAge(LocalDate dob) {
         return (dob != null) ? Period.between(dob, LocalDate.now()).getYears() : 0;
     }
+
+    public void setEmail(String mail) {
+    }
 }
