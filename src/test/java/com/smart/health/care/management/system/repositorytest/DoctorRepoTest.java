@@ -40,7 +40,7 @@ class DoctorRepoTest {
         Doctor doctor = new Doctor();
         doctor.setName("Dr. Brown");
         doctor.setEmail("dr.brown@example.com");
-        doctor.setSpeciality("Neurology");
+        doctor.setSpecialty("Neurology");
         doctor.setExperience("8 years");
         doctor.setPassword("securepassword");
         doctor.setSpecialty("Cardiology");
@@ -62,7 +62,7 @@ class DoctorRepoTest {
         Doctor doctor = new Doctor();
         doctor.setName("Dr. Green");
         doctor.setEmail("dr.green@example.com");
-        doctor.setSpeciality("Pediatrics");
+        doctor.setSpecialty("Pediatrics");
         doctor.setExperience("5 years");
         doctor.setPassword("securepassword");
         doctor.setSpecialty("Cardiology");
@@ -84,7 +84,7 @@ class DoctorRepoTest {
         Doctor doctor = new Doctor();
         doctor.setName("Dr. White");
         doctor.setEmail("dr.white@example.com");
-        doctor.setSpeciality("Orthopedics");
+        doctor.setSpecialty("Orthopedics");
         doctor.setExperience("15 years");
         doctor.setPassword("securepassword");
         doctor.setSpecialty("Cardiology");
