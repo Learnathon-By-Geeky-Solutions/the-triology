@@ -172,4 +172,33 @@ class DoctorServiceTest {
 
         assertThrows(ResourceNotFoundException.class, () -> doctorService.deleteDoctor(1));
     }
+
+    @Test
+    void testGetTopExperiencedDoctors_Success() {
+        Doctor doctor1 = new Doctor();
+        doctor1.setName("Dr. Alice");
+        doctor1.setExperience("15 years");
+        doctor1.setSpecialty("Cardiology");
+
+        Doctor doctor2 = new Doctor();
+        doctor2.setName("Dr. Bob");
+        doctor2.setExperience("12 years");
+        doctor2.setSpecialty("Neurology");
+
+        DoctorDto dto1 = new DoctorDto(1, "Dr. Alice", "Cardiology", "15 years");
+        DoctorDto dto2 = new DoctorDto(2, "Dr. Bob", "Neurology", "12 years");
+
+        when(doctorRepo.findDoctorsWithMinExperience(5)).thenReturn(List.of(doctor1, doctor2));
+        when(doctorMapper.toDto(doctor1)).thenReturn(dto1);
+        when(doctorMapper.toDto(doctor2)).thenReturn(dto2);
+
+        List<DoctorDto> result = doctorService.getTopExperiencedDoctors();
+
+        assertEquals(2, result.size());
+        assertEquals("Dr. Alice", result.get(0).getDocName());
+        verify(doctorRepo, times(1)).findDoctorsWithMinExperience(5);
+        verify(doctorMapper, times(1)).toDto(doctor1);
+        verify(doctorMapper, times(1)).toDto(doctor2);
+    }
+
 }
