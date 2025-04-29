@@ -8,11 +8,9 @@ import com.smart.health.care.management.system.exception.ResourceNotFoundExcepti
 import com.smart.health.care.management.system.mapper.DoctorMapper;
 import com.smart.health.care.management.system.model.Doctor;
 import com.smart.health.care.management.system.repository.DoctorRepo;
-import com.smart.health.care.management.system.response.CustomResponse;
 import com.smart.health.care.management.system.service.DoctorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.http.ResponseEntity;
 
 import java.util.Collections;
 import java.util.List;
@@ -176,14 +174,21 @@ class DoctorServiceTest {
     }
 
     @Test
-    void testGetTopExperiencedDoctors() {
-        Doctor doctor1 = new Doctor(); doctor1.setExperience("10 years");
-        Doctor doctor2 = new Doctor(); doctor2.setExperience("8 years");
+    void testGetTopExperiencedDoctors_Success() {
+        Doctor doctor1 = new Doctor();
+        doctor1.setName("Dr. Alice");
+        doctor1.setExperience("15 years");
+        doctor1.setSpecialty("Cardiology");
 
-        DoctorDto dto1 = new DoctorDto(1, "Dr. Alice", "Cardiology", "10 years");
-        DoctorDto dto2 = new DoctorDto(2, "Dr. Bob", "Neurology", "8 years");
+        Doctor doctor2 = new Doctor();
+        doctor2.setName("Dr. Bob");
+        doctor2.setExperience("12 years");
+        doctor2.setSpecialty("Neurology");
 
-        when(doctorRepo.findAll()).thenReturn(List.of(doctor1, doctor2));
+        DoctorDto dto1 = new DoctorDto(1, "Dr. Alice", "Cardiology", "15 years");
+        DoctorDto dto2 = new DoctorDto(2, "Dr. Bob", "Neurology", "12 years");
+
+        when(doctorRepo.findDoctorsWithMinExperience(5)).thenReturn(List.of(doctor1, doctor2));
         when(doctorMapper.toDto(doctor1)).thenReturn(dto1);
         when(doctorMapper.toDto(doctor2)).thenReturn(dto2);
 
@@ -191,9 +196,9 @@ class DoctorServiceTest {
 
         assertEquals(2, result.size());
         assertEquals("Dr. Alice", result.get(0).getDocName());
-        assertEquals("Dr. Bob", result.get(1).getDocName());
-
-        verify(doctorRepo, times(1)).findAll();
+        verify(doctorRepo, times(1)).findDoctorsWithMinExperience(5);
+        verify(doctorMapper, times(1)).toDto(doctor1);
+        verify(doctorMapper, times(1)).toDto(doctor2);
     }
 
 }

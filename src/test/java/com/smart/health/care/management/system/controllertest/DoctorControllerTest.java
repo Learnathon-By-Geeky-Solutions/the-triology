@@ -121,15 +121,15 @@ class DoctorControllerTest {
 
     @Test
     void testGetTopExperiencedDoctors() {
-        DoctorDto dto1 = new DoctorDto(1, "Dr. Alice", "Cardiology", "10 years");
-        DoctorDto dto2 = new DoctorDto(2, "Dr. Bob", "Neurology", "8 years");
+        DoctorDto dto1 = new DoctorDto(1, "Dr. Alice", "Cardiology", "15 years");
+        DoctorDto dto2 = new DoctorDto(2, "Dr. Bob", "Neurology", "12 years");
 
         when(doctorService.getTopExperiencedDoctors()).thenReturn(List.of(dto1, dto2));
 
         ResponseEntity<CustomResponse<List<DoctorDto>>> response = doctorController.getTopExperiencedDoctors();
 
         assertEquals("S0000", response.getBody().getResponseCode());
-        assertEquals("List of the popular doctors : ", response.getBody().getResponseMessage());
+        assertEquals("Top experienced doctors fetched.", response.getBody().getResponseMessage());
         assertEquals(2, response.getBody().getData().size());
         assertEquals("Dr. Alice", response.getBody().getData().get(0).getDocName());
 
