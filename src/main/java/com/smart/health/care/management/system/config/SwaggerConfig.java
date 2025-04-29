@@ -23,8 +23,8 @@ public class SwaggerConfig {
                         .title("Smart Health Care Management System API")
                         .description("API documentation for Smart Health Care Management System")
                         .version("1.0.0"))
-                .addSecurityItem(new SecurityRequirement().addList(securitySchemeName)) // <-- Add this
-                .components(new Components().addSecuritySchemes(securitySchemeName, // <-- Add this
+                .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
+                .components(new Components().addSecuritySchemes(securitySchemeName,
                         new SecurityScheme()
                                 .name(securitySchemeName)
                                 .type(SecurityScheme.Type.HTTP)

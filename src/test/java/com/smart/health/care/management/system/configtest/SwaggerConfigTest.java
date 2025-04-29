@@ -36,7 +36,7 @@ class SwaggerConfigTest {
         assertNotNull(servers, "Servers list should not be null");
         assertEquals(2, servers.size(), "There should be 2 server entries");
 
-        assertTrue(servers.stream().anyMatch(server -> "http://localhost:8081".equals(server.getUrl())), "Missing localhost:8081 server");
+        assertTrue(servers.stream().anyMatch(server -> "http://localhost:8080".equals(server.getUrl())), "Missing localhost:8080 server");
         assertTrue(servers.stream().anyMatch(server -> "http://localhost:8082".equals(server.getUrl())), "Missing localhost:8082 server");
     }
 }
