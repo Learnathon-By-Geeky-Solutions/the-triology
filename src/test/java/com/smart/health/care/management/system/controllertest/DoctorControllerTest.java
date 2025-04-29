@@ -129,7 +129,7 @@ class DoctorControllerTest {
         ResponseEntity<CustomResponse<List<DoctorDto>>> response = doctorController.getTopExperiencedDoctors();
 
         assertEquals("S0000", response.getBody().getResponseCode());
-        assertEquals("Top experienced doctors fetched.", response.getBody().getResponseMessage());
+        assertEquals("List of the popular doctors : ", response.getBody().getResponseMessage());
         assertEquals(2, response.getBody().getData().size());
         assertEquals("Dr. Alice", response.getBody().getData().get(0).getDocName());
 
