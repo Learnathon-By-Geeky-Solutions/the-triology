@@ -8,9 +8,11 @@ import com.smart.health.care.management.system.exception.ResourceNotFoundExcepti
 import com.smart.health.care.management.system.mapper.DoctorMapper;
 import com.smart.health.care.management.system.model.Doctor;
 import com.smart.health.care.management.system.repository.DoctorRepo;
+import com.smart.health.care.management.system.response.CustomResponse;
 import com.smart.health.care.management.system.service.DoctorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Collections;
 import java.util.List;
@@ -171,5 +173,43 @@ class DoctorServiceTest {
         when(doctorRepo.findById(1)).thenReturn(Optional.empty());
 
         assertThrows(ResourceNotFoundException.class, () -> doctorService.deleteDoctor(1));
+    }
+
+    @Test
+    void testGetTop5ExperiencedDoctors() {
+        Doctor doctor1 = new Doctor("Dr.Alice", "Cardiology", "5 years", "sdb@dsd.com","01234345456","3453452");
+        Doctor doctor2 = new Doctor("Dr. Bob", "Neurology", "10 years", "sdssd@dsd.com","01232332343","346845");
+
+        DoctorDto dto1 = new DoctorDto(1, "Dr. Alice", "Cardiology", "5 years");
+        DoctorDto dto2 = new DoctorDto(2, "Dr. Bob", "Neurology", "10 years");
+
+        when(doctorRepo.findDoctorsWithMinExperience(5)).thenReturn(List.of(doctor1, doctor2));
+        when(doctorMapper.toDto(doctor1)).thenReturn(dto1);
+        when(doctorMapper.toDto(doctor2)).thenReturn(dto2);
+
+        List<DoctorDto> result = doctorService.getTopExperiencedDoctors();
+
+        assertEquals(2, result.size());
+        assertEquals("Dr. Alice", result.get(0).getDocName());
+        assertEquals("Dr. Bob", result.get(1).getDocName());
+
+        verify(doctorRepo, times(1)).findDoctorsWithMinExperience(5);
+        verify(doctorMapper, times(2)).toDto(any(Doctor.class));
+    }
+
+    @Test
+    void testGetTopExperiencedDoctors() {
+        DoctorDto dto1 = new DoctorDto(1, "Dr. Alice", "Cardiology", "5 years");
+        DoctorDto dto2 = new DoctorDto(2, "Dr. Bob", "Neurology", "10 years");
+
+        when(doctorService.getTopExperiencedDoctors()).thenReturn(List.of(dto1, dto2));
+
+        ResponseEntity<CustomResponse<List<DoctorDto>>> response = (ResponseEntity<CustomResponse<List<DoctorDto>>>) doctorService.getTopExperiencedDoctors();
+
+        assertEquals("S0000", response.getBody().getResponseCode());
+        assertEquals("Top 5 experienced doctors fetched successfully.", response.getBody().getResponseMessage());
+        assertEquals(2, response.getBody().getData().size());
+
+        verify(doctorService, times(1)).getTopExperiencedDoctors();
     }
 }

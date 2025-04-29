@@ -65,7 +65,7 @@ public class DoctorService {
     }
 
 
-    public List<DoctorDto> getTop5ExperiencedDoctors() {
+    public List<DoctorDto> getTopExperiencedDoctors() {
         List<Doctor> doctors = doctorRepo.findDoctorsWithMinExperience(5);
         return doctors.stream().map(doctorMapper::toDto).toList();
     }
