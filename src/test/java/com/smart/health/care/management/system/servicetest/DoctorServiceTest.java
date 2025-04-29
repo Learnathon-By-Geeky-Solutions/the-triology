@@ -177,17 +177,23 @@ class DoctorServiceTest {
 
     @Test
     void testGetTopExperiencedDoctors() {
-        DoctorDto dto1 = new DoctorDto(1, "Dr. Alice", "Cardiology", "5 years");
-        DoctorDto dto2 = new DoctorDto(2, "Dr. Bob", "Neurology", "10 years");
+        Doctor doctor1 = new Doctor(); doctor1.setExperience("10 years");
+        Doctor doctor2 = new Doctor(); doctor2.setExperience("8 years");
 
-        when(doctorService.getTopExperiencedDoctors()).thenReturn(List.of(dto1, dto2));
+        DoctorDto dto1 = new DoctorDto(1, "Dr. Alice", "Cardiology", "10 years");
+        DoctorDto dto2 = new DoctorDto(2, "Dr. Bob", "Neurology", "8 years");
 
-        ResponseEntity<CustomResponse<List<DoctorDto>>> response = (ResponseEntity<CustomResponse<List<DoctorDto>>>) doctorService.getTopExperiencedDoctors();
+        when(doctorRepo.findAll()).thenReturn(List.of(doctor1, doctor2));
+        when(doctorMapper.toDto(doctor1)).thenReturn(dto1);
+        when(doctorMapper.toDto(doctor2)).thenReturn(dto2);
 
-        assertEquals("S0000", response.getBody().getResponseCode());
-        assertEquals("List of the popular doctors : ", response.getBody().getResponseMessage());
-        assertEquals(2, response.getBody().getData().size());
+        List<DoctorDto> result = doctorService.getTopExperiencedDoctors();
 
-        verify(doctorService, times(1)).getTopExperiencedDoctors();
+        assertEquals(2, result.size());
+        assertEquals("Dr. Alice", result.get(0).getDocName());
+        assertEquals("Dr. Bob", result.get(1).getDocName());
+
+        verify(doctorRepo, times(1)).findAll();
     }
+
 }
