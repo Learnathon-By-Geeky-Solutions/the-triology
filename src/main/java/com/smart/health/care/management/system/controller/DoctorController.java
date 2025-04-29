@@ -63,5 +63,12 @@ public class DoctorController {
         return ResponseEntity.ok(new CustomResponse<>(RCODE, "Doctor deleted successfully.", result));
     }
 
+    @GetMapping("/top-experienced")
+    public ResponseEntity<CustomResponse<List<DoctorDto>>> getTopExperiencedDoctors() {
+        List<DoctorDto> topDoctors = doctorService.getTopExperiencedDoctors();
+        return ResponseEntity.ok(new CustomResponse<>(RCODE, "List of the popular doctors : ", topDoctors));
+    }
+
+
 
 }
