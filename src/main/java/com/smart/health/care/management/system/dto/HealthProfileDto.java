@@ -14,10 +14,7 @@ public class HealthProfileDto {
     private String conditions;
 
     public HealthProfileDto() {
-        //constructor
     }
-
-    // Manual Getter and Setter methods
 
     public Long getId() {
         return id;
@@ -83,7 +80,6 @@ public class HealthProfileDto {
         this.conditions = conditions;
     }
 
-    // Manual Builder Pattern
     public static Builder builder() {
         return new Builder();
     }

@@ -22,11 +22,11 @@ public class Appointment {
 
     @Column(nullable = false)
     @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate date;  // ✅ Change LocalDateTime → LocalDate
+    private LocalDate date;
 
     @Column(nullable = false)
     @JsonFormat(pattern = "hh:mm a")
-    private LocalTime time;  // ✅ Change LocalDateTime → LocalTime
+    private LocalTime time;
 
     public Appointment() {
     }
@@ -39,7 +39,6 @@ public class Appointment {
         this.time = time;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

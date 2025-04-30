@@ -7,19 +7,11 @@ public class DoctorDto {
     private String docSpeciality;
     private String docExperience;
 
-
-    //constructor
     public DoctorDto(int id, String docName, String docSpeciality, String docExperience) {
         this.id= id;
         this.docName = docName;
         this.docSpeciality = docSpeciality;
         this.docExperience = docExperience;
-
-
-
-
-
-
     }
     public int getId() {
         return id;
@@ -27,7 +19,6 @@ public class DoctorDto {
     public void setId(int id) {
         this.id = id;
     }
-
     public String getDocName() {
         return docName;
     }

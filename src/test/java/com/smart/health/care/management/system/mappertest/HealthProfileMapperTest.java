@@ -17,7 +17,7 @@ class HealthProfileMapperTest {
 
     @Test
     void testToDto() {
-        // Arrange
+
         Patient patient = new Patient();
         patient.setId(1L);
 
@@ -31,10 +31,8 @@ class HealthProfileMapperTest {
         healthProfile.setMedicalHistory("Asthma");
         healthProfile.setConditions("Hypertension");
 
-        // Act
         HealthProfileDto dto = healthProfileMapper.toDto(healthProfile);
 
-        // Assert
         assertEquals(10L, dto.getId());
         assertEquals(1L, dto.getPatientId());
         assertEquals(170.5, dto.getHeight());
@@ -47,7 +45,7 @@ class HealthProfileMapperTest {
 
     @Test
     void testToEntity() {
-        // Arrange
+
         HealthProfileCreateDto createDto = new HealthProfileCreateDto();
         createDto.setHeight(180.2);
         createDto.setWeight(75.5);
@@ -59,10 +57,8 @@ class HealthProfileMapperTest {
         Patient patient = new Patient();
         patient.setId(2L);
 
-        // Act
         HealthProfile entity = healthProfileMapper.toEntity(createDto, patient);
 
-        // Assert
         assertEquals(patient, entity.getPatient());
         assertEquals(180.2, entity.getHeight());
         assertEquals(75.5, entity.getWeight());

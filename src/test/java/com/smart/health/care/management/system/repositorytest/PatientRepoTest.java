@@ -19,7 +19,7 @@ class PatientRepoTest {
 
     @Test
     void testSavePatient() {
-        // Arrange
+
         Patient patient = new Patient();
         patient.setName("John Doe");
         patient.setPhoneNumber("1234567890");
@@ -27,18 +27,16 @@ class PatientRepoTest {
         patient.setPassword("securepassword");
         patient.setDateOfBirth(LocalDate.of(1985, 5, 15));
 
-        // Act
         Patient savedPatient = patientRepo.save(patient);
 
-        // Assert
         assertThat(savedPatient).isNotNull();
-        assertThat(savedPatient.getId()).isGreaterThan(0);  // Ensure the patient has been saved with a generated ID
+        assertThat(savedPatient.getId()).isGreaterThan(0);
         assertThat(savedPatient.getPhoneNumber()).isEqualTo("1234567890");
     }
 
     @Test
     void testFindByPhoneNumber() {
-        // Arrange
+
         Patient patient = new Patient();
         patient.setName("Jane Doe");
         patient.setPhoneNumber("9876543210");
@@ -47,21 +45,18 @@ class PatientRepoTest {
         patient.setDateOfBirth(LocalDate.of(1990, 8, 20));
         patientRepo.save(patient);
 
-        // Act
         Optional<Patient> foundPatient = patientRepo.findByPhoneNumber("9876543210");
 
-        // Assert
-        assertThat(foundPatient).isPresent();  // Ensure the patient is found
+        assertThat(foundPatient).isPresent();
         assertThat(foundPatient.get().getPhoneNumber()).isEqualTo("9876543210");
         assertThat(foundPatient.get().getName()).isEqualTo("Jane Doe");
     }
 
     @Test
     void testFindByPhoneNumber_NotFound() {
-        // Act
+
         Optional<Patient> foundPatient = patientRepo.findByPhoneNumber("0000000000");
 
-        // Assert
-        assertThat(foundPatient).isEmpty();  // Ensure no patient is found
+        assertThat(foundPatient).isEmpty();
     }
 }

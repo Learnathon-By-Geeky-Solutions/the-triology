@@ -9,7 +9,7 @@ class PatientCreateDtoTest {
 
     @Test
     void testPatientCreateDto() {
-        // Arrange
+
         PatientCreateDto patientCreateDto = new PatientCreateDto();
         Long expectedPatientId = 123L;
         String expectedName = "John Doe";
@@ -18,7 +18,6 @@ class PatientCreateDtoTest {
         String expectedPhone = "+1234567890";
         String expectedAddress = "123 Main Street, City, Country";
 
-        // Act
         patientCreateDto.setPatientId(expectedPatientId);
         patientCreateDto.setName(expectedName);
         patientCreateDto.setGender(expectedGender);
@@ -26,7 +25,6 @@ class PatientCreateDtoTest {
         patientCreateDto.setPhone(expectedPhone);
         patientCreateDto.setAddress(expectedAddress);
 
-        // Assert
         assertEquals(expectedPatientId, patientCreateDto.getPatientId());
         assertEquals(expectedName, patientCreateDto.getName());
         assertEquals(expectedGender, patientCreateDto.getGender());
@@ -37,27 +35,23 @@ class PatientCreateDtoTest {
 
     @Test
     void testName() {
-        // Arrange
+
         PatientCreateDto patientCreateDto = new PatientCreateDto();
         String expectedName = "John Doe";
 
-        // Act
         patientCreateDto.setName(expectedName);
 
-        // Assert
         assertEquals(expectedName, patientCreateDto.getName());
     }
 
     @Test
     void testPhoneNumber() {
-        // Arrange
+
         PatientCreateDto patientCreateDto = new PatientCreateDto();
         String expectedPhone = "+1234567890";
 
-        // Act
         patientCreateDto.setPhone(expectedPhone);
 
-        // Assert
         assertEquals(expectedPhone, patientCreateDto.getPhoneNumber());
     }
 }

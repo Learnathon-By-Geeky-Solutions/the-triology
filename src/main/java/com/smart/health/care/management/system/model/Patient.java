@@ -37,7 +37,6 @@ public class Patient implements UserDetails {
 
     private int age;
 
-    // Constructor
     public Patient() {
     }
 
@@ -48,7 +47,6 @@ public class Patient implements UserDetails {
         this.dateOfBirth = dateOfBirth;
     }
 
-    // Override methods for UserDetails
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
@@ -60,7 +58,7 @@ public class Patient implements UserDetails {
 
     @Override
     public String getUsername() {
-        return phoneNumber; // Used phone number as username
+        return phoneNumber;
     }
 
     @Override
@@ -83,7 +81,6 @@ public class Patient implements UserDetails {
         return true;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -141,6 +138,5 @@ public class Patient implements UserDetails {
     }
 
     public void setEmail(String email) {
-        // You can implement this if needed
     }
 }

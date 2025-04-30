@@ -11,32 +11,26 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class PatientMapper {
 
-    // Map Entity -> DTO (for response)
     public PatientDto toDto(Patient patient) {
-        // If patient has separate first and last name fields, concatenate them for the full name
-        String fullName = patient.getName(); // Assuming Patient has firstName and lastName fields
+        String fullName = patient.getName();
 
         return new PatientDto(
                 patient.getId(),
                 fullName,
-                patient.getPhoneNumber()  // Assuming phoneNumber is already in the Patient model
+                patient.getPhoneNumber()
         );
     }
 
-    // Map DTO -> Entity (for saving/updating)
     public Patient toEntity(PatientCreateDto dto) {
         Patient patient = new Patient();
 
-        // Directly set the full name
         patient.setName(dto.getName());
-
-        patient.setPhoneNumber(dto.getPhoneNumber());  // Assuming phoneNumber in PatientCreateDto
-        patient.setDateOfBirth(parseDateOfBirth(dto.getDateOfBirth()));  // Parse and set the dateOfBirth
+        patient.setPhoneNumber(dto.getPhoneNumber());
+        patient.setDateOfBirth(parseDateOfBirth(dto.getDateOfBirth()));
 
         return patient;
     }
 
-    // Method to parse the string date to LocalDate
     private LocalDate parseDateOfBirth(String dateString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(dateString, formatter);

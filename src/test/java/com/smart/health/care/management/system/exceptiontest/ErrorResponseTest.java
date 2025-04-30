@@ -11,15 +11,13 @@ class ErrorResponseTest {
 
     @Test
     void testErrorResponseConstructorAndGetters() {
-        // Arrange
+
         String expectedMessage = "Resource not found";
         int expectedStatus = 404;
         LocalDateTime expectedTimestamp = LocalDateTime.now();
 
-        // Act
         ErrorResponse errorResponse = new ErrorResponse(expectedMessage, expectedStatus, expectedTimestamp);
 
-        // Assert
         assertEquals(expectedMessage, errorResponse.getMessage());
         assertEquals(expectedStatus, errorResponse.getStatus());
         assertEquals(expectedTimestamp, errorResponse.getTimestamp());

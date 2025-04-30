@@ -25,7 +25,6 @@ public class HealthProfileService {
         this.patientService = patientService;
     }
 
-    // Get all health profiles
     public List<HealthProfileDto> getAllHealthProfiles() {
         return healthProfileRepo.findAll()
                 .stream()
@@ -33,30 +32,24 @@ public class HealthProfileService {
                 .toList();
     }
 
-    // Get health profile by patient ID
     public HealthProfileDto getHealthProfileByPatientId(Long patientId) {
-        // Ensure passing patientId as Long
-        HealthProfile profile = healthProfileRepo.findByPatient_Id(patientId);  // Updated to use Long
+        HealthProfile profile = healthProfileRepo.findByPatient_Id(patientId);
         if (profile == null) {
             throw new ResourceNotFoundException("Health profile not found for patient ID: " + patientId);
         }
         return healthProfileMapper.toDto(profile);
     }
 
-    // Create or update health profile
     public HealthProfileDto createHealthProfile(HealthProfileCreateDto createDto) {
         validateHealthProfileDto(createDto);
-        // Ensure the Patient ID is passed as Long
-        Patient patient = patientService.getPatientEntityById(createDto.getPatientId());  // Updated to use Long
+        Patient patient = patientService.getPatientEntityById(createDto.getPatientId());
         HealthProfile profile = healthProfileMapper.toEntity(createDto, patient);
         HealthProfile saved = healthProfileRepo.save(profile);
         return healthProfileMapper.toDto(saved);
     }
 
-    // Update health profile
     public String updateHealthProfile(Long patientId, HealthProfileCreateDto updateDto) {
-        // Updated to use Long for patientId
-        HealthProfile existingProfile = healthProfileRepo.findByPatient_Id(patientId);  // Updated to use Long
+        HealthProfile existingProfile = healthProfileRepo.findByPatient_Id(patientId);
         if (existingProfile == null) {
             throw new ResourceNotFoundException("HealthProfile for Patient ID " + patientId + " not found");
         }
@@ -71,10 +64,8 @@ public class HealthProfileService {
         return "Health Profile updated successfully";
     }
 
-    // Delete health profile by ID
     public String deleteHealthProfile(Long id) {
-        // Ensure passing id as Long
-        HealthProfile hp = healthProfileRepo.findByPatient_Id(id);  // Updated to use Long
+        HealthProfile hp = healthProfileRepo.findByPatient_Id(id);
         if (hp == null) {
             throw new ResourceNotFoundException("Health Profile with ID " + id + " not found");
         }
@@ -82,7 +73,6 @@ public class HealthProfileService {
         return "Successfully deleted Health Profile with ID " + id;
     }
 
-    // Validate health profile input
     private void validateHealthProfileDto(HealthProfileCreateDto dto) {
         if (dto.getPatientId() == null || dto.getPatientId() <= 0) {
             throw new InvalidInputException("Patient ID is required");

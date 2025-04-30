@@ -29,19 +29,16 @@ public class ApplicationConfiguration {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
-            // Try to find Patient first
             UserDetails user = patientRepo.findByPhoneNumber(username).orElse(null);
             if (user != null) {
                 return user;
             }
 
-            // Then try Doctor
             user = doctorRepo.findByEmail(username).orElse(null); // or by phone if preferred
             if (user != null) {
                 return user;
             }
 
-            // If neither found
             throw new UsernameNotFoundException("User not found with username: " + username);
         };
     }

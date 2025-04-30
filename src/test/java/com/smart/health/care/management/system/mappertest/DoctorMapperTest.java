@@ -14,17 +14,15 @@ class DoctorMapperTest {
 
     @Test
     void testToDto() {
-        // Arrange
+
         Doctor doctor = new Doctor();
         doctor.setId(1);
         doctor.setName("Dr. John Doe");
         doctor.setSpecialty("Cardiology");
         doctor.setExperience("10");
 
-        // Act
         DoctorDto dto = doctorMapper.toDto(doctor);
 
-        // Assert
         assertEquals(1L, dto.getId());
         assertEquals("Dr. John Doe", dto.getDocName());
         assertEquals("Cardiology", dto.getDocSpeciality());
@@ -33,7 +31,7 @@ class DoctorMapperTest {
 
     @Test
     void testToEntity() {
-        // Arrange
+
         DoctorCreateDto createDto = new DoctorCreateDto();
         createDto.setDoctorName("Dr. Jane Smith");
         createDto.setDoctorSpeciality("Neurology");
@@ -42,10 +40,8 @@ class DoctorMapperTest {
         createDto.setDoctorPhone("+9876543210");
         createDto.setDoctorPassword("securePassword123");
 
-        // Act
         Doctor doctor = doctorMapper.toEntity(createDto);
 
-        // Assert
         assertEquals("Dr. Jane Smith", doctor.getName());
         assertEquals("Neurology", doctor.getSpecialty());
         assertEquals("10", doctor.getExperience());

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class AppointmentMapper {
 
-    // Convert Entity → DTO (return patient and doctor names instead of IDs)
     public AppointmentDto toDto(Appointment appointment) {
         return new AppointmentDto(
                 appointment.getId(),
@@ -21,7 +20,6 @@ public class AppointmentMapper {
         );
     }
 
-    // Convert DTO → Entity
     public Appointment toEntity(AppointmentCreateDto dto, Patient patient, Doctor doctor) {
         Appointment appointment = new Appointment();
         appointment.setPatient(patient);

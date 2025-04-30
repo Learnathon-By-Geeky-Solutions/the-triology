@@ -8,7 +8,7 @@ class DoctorCreateDtoTest {
 
     @Test
     void testDoctorCreateDto() {
-        // Arrange
+
         DoctorCreateDto doctorCreateDto = new DoctorCreateDto();
         String expectedDoctorName = "Dr. John Doe";
         String expectedDoctorSpeciality = "Cardiology";
@@ -17,7 +17,6 @@ class DoctorCreateDtoTest {
         String expectedDoctorPhone = "+1234567890";
         String expectedDoctorPassword = "password123";
 
-        // Act (Method chaining)
         doctorCreateDto
                 .setDoctorName(expectedDoctorName)
                 .setDoctorSpeciality(expectedDoctorSpeciality)
@@ -26,7 +25,6 @@ class DoctorCreateDtoTest {
                 .setDoctorPhone(expectedDoctorPhone)
                 .setDoctorPassword(expectedDoctorPassword);
 
-        // Assert
         assertEquals(expectedDoctorName, doctorCreateDto.getDoctorName());
         assertEquals(expectedDoctorSpeciality, doctorCreateDto.getDoctorSpeciality());
         assertEquals(expectedDoctorExperience, doctorCreateDto.getDoctorExperience());

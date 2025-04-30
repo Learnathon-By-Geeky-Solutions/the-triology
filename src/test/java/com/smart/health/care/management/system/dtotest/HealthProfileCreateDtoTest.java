@@ -11,7 +11,7 @@ class HealthProfileCreateDtoTest {
 
     @Test
     void testHealthProfileCreateDto() {
-        // Arrange
+
         HealthProfileCreateDto healthProfileCreateDto = new HealthProfileCreateDto();
         Long expectedPatientId = 123L;
         double expectedHeight = 5.9;
@@ -21,7 +21,6 @@ class HealthProfileCreateDtoTest {
         String expectedMedicalHistory = "No major surgeries.";
         String expectedConditions = "Asthma";
 
-        // Act
         healthProfileCreateDto.setPatientId(expectedPatientId);
         healthProfileCreateDto.setHeight(expectedHeight);
         healthProfileCreateDto.setWeight(expectedWeight);
@@ -30,7 +29,6 @@ class HealthProfileCreateDtoTest {
         healthProfileCreateDto.setMedicalHistory(expectedMedicalHistory);
         healthProfileCreateDto.setConditions(expectedConditions);
 
-        // Assert
         assertEquals(expectedPatientId, healthProfileCreateDto.getPatientId());
         assertEquals(expectedHeight, healthProfileCreateDto.getHeight());
         assertEquals(expectedWeight, healthProfileCreateDto.getWeight());

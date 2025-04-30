@@ -14,7 +14,7 @@ class AppointmentTest {
 
     @Test
     void testAppointmentSettersAndGetters() {
-        // Arrange
+
         Patient patient = new Patient();
         patient.setId(1L).setName("John Doe");
 
@@ -26,14 +26,12 @@ class AppointmentTest {
 
         Appointment appointment = new Appointment();
 
-        // Act
         appointment.setId(100L);
         appointment.setPatient(patient);
         appointment.setDoctor(doctor);
         appointment.setDate(date);
         appointment.setTime(time);
 
-        // Assert
         assertEquals(100L, appointment.getId());
         assertEquals(patient, appointment.getPatient());
         assertEquals(doctor, appointment.getDoctor());
@@ -43,7 +41,7 @@ class AppointmentTest {
 
     @Test
     void testAppointmentParameterizedConstructor() {
-        // Arrange
+
         Patient patient = new Patient();
         patient.setId(2L).setName("Jane Doe");
 
@@ -53,10 +51,8 @@ class AppointmentTest {
         LocalDate date = LocalDate.of(2025, 12, 25);
         LocalTime time = LocalTime.of(9, 0);
 
-        // Act
         Appointment appointment = new Appointment(200L, patient, doctor, date, time);
 
-        // Assert
         assertEquals(200L, appointment.getId());
         assertEquals(patient, appointment.getPatient());
         assertEquals(doctor, appointment.getDoctor());

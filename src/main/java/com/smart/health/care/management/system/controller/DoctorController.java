@@ -2,16 +2,13 @@ package com.smart.health.care.management.system.controller;
 
 import com.smart.health.care.management.system.dto.DoctorCreateDto;
 import com.smart.health.care.management.system.dto.DoctorDto;
-
 import com.smart.health.care.management.system.model.Doctor;
 import com.smart.health.care.management.system.response.CustomResponse;
 import com.smart.health.care.management.system.service.DoctorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

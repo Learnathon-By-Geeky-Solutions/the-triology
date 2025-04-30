@@ -16,7 +16,7 @@ class DoctorRepoTest {
 
     @Test
     void testSaveDoctor() {
-        // Arrange: Create and set values for a Doctor object
+
         Doctor doctor = new Doctor();
         doctor.setName("Dr. Smith");
         doctor.setEmail("dr.smith@example.com");
@@ -25,18 +25,17 @@ class DoctorRepoTest {
         doctor.setSpecialty("Cardiology");
         doctor.setExperience("10 years");
 
-        // Act: Save the doctor object to the repository
+
         Doctor savedDoctor = doctorRepo.save(doctor);
 
-        // Assert: Check that the saved doctor is not null and the fields are correctly saved
         assertThat(savedDoctor).isNotNull();
-        assertThat(savedDoctor.getId()).isGreaterThan(0);  // Verify that the doctor has a non-zero ID
-        assertThat(savedDoctor.getEmail()).isEqualTo("dr.smith@example.com");  // Verify email
+        assertThat(savedDoctor.getId()).isGreaterThan(0);
+        assertThat(savedDoctor.getEmail()).isEqualTo("dr.smith@example.com");
     }
 
     @Test
     void testFindDoctorById() {
-        // Arrange: Create a doctor object and save it
+
         Doctor doctor = new Doctor();
         doctor.setName("Dr. Brown");
         doctor.setEmail("dr.brown@example.com");
@@ -47,18 +46,16 @@ class DoctorRepoTest {
         doctor.setPhone("0123456789");
         doctorRepo.save(doctor);
 
-        // Act: Retrieve the doctor by ID
         Doctor foundDoctor = doctorRepo.findById(doctor.getId()).orElse(null);
 
-        // Assert: Check that the doctor is found and the details match
-        assertThat(foundDoctor).isNotNull();  // Check if doctor is found
-        assertThat(foundDoctor.getId()).isEqualTo(doctor.getId());  // Verify ID
-        assertThat(foundDoctor.getName()).isEqualTo("Dr. Brown");  // Verify name
+        assertThat(foundDoctor).isNotNull();
+        assertThat(foundDoctor.getId()).isEqualTo(doctor.getId());
+        assertThat(foundDoctor.getName()).isEqualTo("Dr. Brown");
     }
 
     @Test
     void testFindDoctorByEmail() {
-        // Arrange: Create a doctor object and save it
+
         Doctor doctor = new Doctor();
         doctor.setName("Dr. Green");
         doctor.setEmail("dr.green@example.com");
@@ -69,18 +66,16 @@ class DoctorRepoTest {
         doctor.setPhone("0123456789");
         doctorRepo.save(doctor);
 
-        // Act: Retrieve the doctor by email
         Doctor foundDoctor = doctorRepo.findByEmail("dr.green@example.com").orElse(null);
 
-        // Assert: Check that the doctor is found and the details match
-        assertThat(foundDoctor).isNotNull();  // Check if doctor is found by email
-        assertThat(foundDoctor.getEmail()).isEqualTo("dr.green@example.com");  // Verify email
-        assertThat(foundDoctor.getName()).isEqualTo("Dr. Green");  // Verify name
+        assertThat(foundDoctor).isNotNull();
+        assertThat(foundDoctor.getEmail()).isEqualTo("dr.green@example.com");
+        assertThat(foundDoctor.getName()).isEqualTo("Dr. Green");
     }
 
     @Test
     void testDeleteDoctor() {
-        // Arrange: Create a doctor object and save it
+
         Doctor doctor = new Doctor();
         doctor.setName("Dr. White");
         doctor.setEmail("dr.white@example.com");
@@ -91,11 +86,9 @@ class DoctorRepoTest {
         doctor.setPhone("0123456789");
         Doctor savedDoctor = doctorRepo.save(doctor);
 
-        // Act: Delete the saved doctor object
         doctorRepo.delete(savedDoctor);
 
-        // Assert: Check if the doctor is deleted by trying to find it again
         Doctor deletedDoctor = doctorRepo.findById(savedDoctor.getId()).orElse(null);
-        assertThat(deletedDoctor).isNull();  // Verify the doctor is deleted
+        assertThat(deletedDoctor).isNull();
     }
 }

@@ -9,7 +9,7 @@ class DoctorTest {
 
     @Test
     void testDoctorFieldsAndMethods() {
-        // Arrange
+
         Doctor doctor = new Doctor();
         int id = 1;
         String name = "Dr. John Doe";
@@ -19,7 +19,6 @@ class DoctorTest {
         String phone = "1234567890";
         String password = "securePassword";
 
-        // Act
         doctor.setId(id)
                 .setName(name)
                 .setSpecialty(specialty)
@@ -28,7 +27,7 @@ class DoctorTest {
                 .setPhone(phone)
                 .setPassword(password);
 
-        // Assert
+
         assertEquals(id, doctor.getId());
         assertEquals(name, doctor.getName());
         assertEquals(specialty, doctor.getSpecialty());
@@ -37,7 +36,6 @@ class DoctorTest {
         assertEquals(phone, doctor.getPhone());
         assertEquals(password, doctor.getPassword());
 
-        // UserDetails interface checks
         assertEquals(email, doctor.getUsername()); // username is email
         assertEquals(password, doctor.getPassword());
         assertTrue(doctor.isAccountNonExpired());
@@ -49,7 +47,7 @@ class DoctorTest {
 
     @Test
     void testDoctorParameterizedConstructor() {
-        // Arrange
+
         String name = "Dr. Jane Smith";
         String specialty = "Neurology";
         String experience = "8 years";
@@ -57,10 +55,8 @@ class DoctorTest {
         String phone = "0987654321";
         String password = "anotherPassword";
 
-        // Act
         Doctor doctor = new Doctor(name, specialty, experience, email, phone, password);
 
-        // Assert
         assertEquals(name, doctor.getName());
         assertEquals(specialty, doctor.getSpecialty());
         assertEquals(experience, doctor.getExperience());

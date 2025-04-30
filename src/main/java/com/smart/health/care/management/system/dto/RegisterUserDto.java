@@ -2,7 +2,6 @@ package com.smart.health.care.management.system.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDate;
 
 public class RegisterUserDto {
@@ -32,7 +31,6 @@ public class RegisterUserDto {
         return dateOfBirth;
     }
 
-    // Setters with chaining (fluent style)
     public RegisterUserDto setName(String name) {
         this.name = name;
         return this;

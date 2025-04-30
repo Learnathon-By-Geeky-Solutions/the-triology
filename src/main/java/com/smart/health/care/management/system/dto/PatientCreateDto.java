@@ -4,12 +4,11 @@ public class PatientCreateDto {
     private Long patientId;
     private String gender;
     private String email;
-    private String phone;  // This holds the phone number
+    private String phone;
     private String address;
     private String name;
-    private String dateOfBirth;  // Optional field, add if needed
+    private String dateOfBirth;
 
-    // Getter and Setter for patientId
     public Long getPatientId() {
         return patientId;
     }
@@ -18,7 +17,6 @@ public class PatientCreateDto {
         this.patientId = patientId;
     }
 
-    // Getter and Setter for gender
     public String getGender() {
         return gender;
     }
@@ -27,7 +25,6 @@ public class PatientCreateDto {
         this.gender = gender;
     }
 
-    // Getter and Setter for email
     public String getEmail() {
         return email;
     }
@@ -36,7 +33,6 @@ public class PatientCreateDto {
         this.email = email;
     }
 
-    // Getter and Setter for phone
     public String getPhone() {
         return phone;
     }
@@ -45,7 +41,6 @@ public class PatientCreateDto {
         this.phone = phone;
     }
 
-    // Getter and Setter for address
     public String getAddress() {
         return address;
     }
@@ -62,18 +57,14 @@ public class PatientCreateDto {
         this.name = name;
     }
 
-
-    // Getter for phone number (returns phone)
     public String getPhoneNumber() {
         return getPhone();
     }
 
-    // Getter for dateOfBirth (if needed)
     public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    // Setter for dateOfBirth
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }

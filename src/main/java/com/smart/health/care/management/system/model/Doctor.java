@@ -3,10 +3,8 @@ package com.smart.health.care.management.system.model;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.List;
-
 import static jakarta.persistence.GenerationType.AUTO;
 
 @Entity
@@ -39,7 +37,6 @@ public class Doctor implements UserDetails {
     public Doctor() {
     }
 
-    // Parameterized Constructor
     public Doctor(String name, String specialty, String experience, String email, String phone, String password) {
         this.name = name;
         this.specialty = specialty;
@@ -84,7 +81,6 @@ public class Doctor implements UserDetails {
         return true;
     }
 
-    // Getters and setters
     public int getId() {
         return id;
     }

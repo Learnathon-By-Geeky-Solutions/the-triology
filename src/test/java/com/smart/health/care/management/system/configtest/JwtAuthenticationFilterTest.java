@@ -11,9 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.servlet.HandlerExceptionResolver;
-
 import java.io.IOException;
-
 import static org.mockito.Mockito.*;
 
 class JwtAuthenticationFilterTest {

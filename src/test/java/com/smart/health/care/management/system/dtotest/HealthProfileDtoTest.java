@@ -9,7 +9,7 @@ class HealthProfileDtoTest {
 
     @Test
     void testConstructorAndGetters() {
-        // Arrange
+
         Long expectedId = 1L;
         Long expectedPatientId = 101L;
         double expectedHeight = 5.9;
@@ -19,7 +19,6 @@ class HealthProfileDtoTest {
         String expectedMedicalHistory = "Asthma";
         String expectedConditions = "High Blood Pressure";
 
-        // Act
         HealthProfileDto healthProfile = new HealthProfileDto();
         healthProfile.setId(expectedId);
         healthProfile.setPatientId(expectedPatientId);
@@ -30,7 +29,6 @@ class HealthProfileDtoTest {
         healthProfile.setMedicalHistory(expectedMedicalHistory);
         healthProfile.setConditions(expectedConditions);
 
-        // Assert
         assertEquals(expectedId, healthProfile.getId());
         assertEquals(expectedPatientId, healthProfile.getPatientId());
         assertEquals(expectedHeight, healthProfile.getHeight());
@@ -43,10 +41,8 @@ class HealthProfileDtoTest {
 
     @Test
     void testSetters() {
-        // Arrange
         HealthProfileDto healthProfile = new HealthProfileDto();
 
-        // Act
         healthProfile.setId(1L);
         healthProfile.setPatientId(101L);
         healthProfile.setHeight(5.9);
@@ -56,7 +52,6 @@ class HealthProfileDtoTest {
         healthProfile.setMedicalHistory("Asthma");
         healthProfile.setConditions("High Blood Pressure");
 
-        // Assert
         assertEquals(1L, healthProfile.getId());
         assertEquals(101L, healthProfile.getPatientId());
         assertEquals(5.9, healthProfile.getHeight());
@@ -69,10 +64,8 @@ class HealthProfileDtoTest {
 
     @Test
     void testHealthProfileWithDifferentValues() {
-        // Arrange
         HealthProfileDto healthProfile = new HealthProfileDto();
 
-        // Act
         healthProfile.setId(2L);
         healthProfile.setPatientId(102L);
         healthProfile.setHeight(6.1);
@@ -82,7 +75,6 @@ class HealthProfileDtoTest {
         healthProfile.setMedicalHistory("No issues");
         healthProfile.setConditions("None");
 
-        // Assert
         assertEquals(2L, healthProfile.getId());
         assertEquals(102L, healthProfile.getPatientId());
         assertEquals(6.1, healthProfile.getHeight());

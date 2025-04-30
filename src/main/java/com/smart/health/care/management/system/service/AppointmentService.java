@@ -13,14 +13,12 @@ import com.smart.health.care.management.system.repository.AppointmentRepo;
 import com.smart.health.care.management.system.repository.DoctorRepo;
 import com.smart.health.care.management.system.repository.PatientRepo;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class AppointmentService {
 
-    //@Autowired
     private final AppointmentRepo appointmentRepo;
     private final PatientRepo patientRepo;
     private final DoctorRepo doctorRepo;

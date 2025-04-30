@@ -15,7 +15,6 @@ public class AppointmentCreateDto {
     @JsonFormat(pattern = "hh:mm a")
     private LocalTime time;
 
-    // Getters and Setters
     public Long getPatientId() {
         return patientId;
     }

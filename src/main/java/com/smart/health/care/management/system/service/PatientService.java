@@ -9,7 +9,6 @@ import com.smart.health.care.management.system.mapper.PatientMapper;
 import com.smart.health.care.management.system.model.Patient;
 import com.smart.health.care.management.system.repository.PatientRepo;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -55,7 +54,7 @@ public class PatientService {
 
         existingPatient.setName(patientCreateDto.getName());
         existingPatient.setPhoneNumber(patientCreateDto.getPhoneNumber());
-        existingPatient.setDateOfBirth(parseDateOfBirth(patientCreateDto.getDateOfBirth()));  // Parse and set the dateOfBirth
+        existingPatient.setDateOfBirth(parseDateOfBirth(patientCreateDto.getDateOfBirth()));
         patientRepo.save(existingPatient);
         return "Patient updated";
     }
@@ -84,9 +83,8 @@ public class PatientService {
                 .orElseThrow(() -> new ResourceNotFoundException(ACTION + id + ACTION1));
     }
 
-    // Method to parse the string date to LocalDate
     private LocalDate parseDateOfBirth(String dateOfBirth) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return LocalDate.parse(dateOfBirth, formatter);  // Parse the string to LocalDate
+        return LocalDate.parse(dateOfBirth, formatter);
     }
 }

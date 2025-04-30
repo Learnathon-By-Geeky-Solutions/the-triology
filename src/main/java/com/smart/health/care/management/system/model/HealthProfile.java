@@ -35,7 +35,6 @@ public class HealthProfile {
     @Column(nullable = true)
     private String conditions;
 
-    // Constructor
     public HealthProfile() {
     }
 
@@ -50,7 +49,6 @@ public class HealthProfile {
         this.conditions = builder.conditions;
     }
 
-    // Getter and Setter methods
     public Long getId() {
         return id;
     }
@@ -117,12 +115,11 @@ public class HealthProfile {
 
     public long getPatientId() {
         if (this.patient != null) {
-            return this.patient.getId();  // Return as long
+            return this.patient.getId();
         }
-        return -1L; // Return a default value if patient is not set
+        return -1L;
     }
 
-    // Builder pattern for HealthProfile class
     public static class Builder {
         private Long id;
         private Patient patient;

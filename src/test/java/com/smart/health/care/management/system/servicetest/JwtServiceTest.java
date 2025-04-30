@@ -16,7 +16,7 @@ class JwtServiceTest {
 
     private JwtService jwtService;
     private final String secretKey = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"; // 64 bytes for HS256
-    private final long expirationTime = 3600000; // 1 hour in milliseconds
+    private final long expirationTime = 3600000;
 
     private UserDetails userDetails;
 
@@ -24,7 +24,6 @@ class JwtServiceTest {
     void setUp() {
         jwtService = new JwtService();
 
-        // manually inject values because @Value is not processed in unit tests
         jwtService.getClass().getDeclaredFields();
         try {
             var secretField = JwtService.class.getDeclaredField("secretKey");

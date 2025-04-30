@@ -27,7 +27,7 @@ class HealthProfileRepoTest {
 
     @BeforeEach
     void setUp() {
-        // Create a Patient entity for testing
+
         testPatient = new Patient();
         testPatient.setName("John Doe");
         testPatient.setPhoneNumber("1234567890");
@@ -37,7 +37,6 @@ class HealthProfileRepoTest {
         testPatient.setPassword("somePassword");
         patientRepo.save(testPatient);
 
-        // Create a HealthProfile associated with the testPatient
         testHealthProfile = new HealthProfile();
         testHealthProfile.setPatient(testPatient);
         testHealthProfile.setHeight(175.5);
@@ -50,10 +49,9 @@ class HealthProfileRepoTest {
 
     @Test
     void testFindByPatientId() {
-        // Act
+
         HealthProfile foundHealthProfile = healthProfileRepo.findByPatient_Id(testPatient.getId());
 
-        // Assert
         assertThat(foundHealthProfile).isNotNull();
         assertThat(foundHealthProfile.getPatient()).isEqualTo(testPatient);
         assertThat(foundHealthProfile.getHeight()).isEqualTo(175.5);
@@ -63,16 +61,15 @@ class HealthProfileRepoTest {
 
     @Test
     void testFindByPatientIdNotFound() {
-        // Act
-        HealthProfile foundHealthProfile = healthProfileRepo.findByPatient_Id(999L); // Invalid ID
 
-        // Assert
-        assertThat(foundHealthProfile).isNull(); // Should return null
+        HealthProfile foundHealthProfile = healthProfileRepo.findByPatient_Id(999L);
+
+        assertThat(foundHealthProfile).isNull();
     }
 
     @Test
     void testSaveHealthProfile() {
-        // Arrange
+
         HealthProfile newHealthProfile = new HealthProfile();
         newHealthProfile.setPatient(testPatient);
         newHealthProfile.setHeight(180.0);
@@ -81,10 +78,8 @@ class HealthProfileRepoTest {
         newHealthProfile.setMedicalHistory("None");
         newHealthProfile.setConditions("Healthy");
 
-        // Act
         HealthProfile savedHealthProfile = healthProfileRepo.save(newHealthProfile);
 
-        // Assert
         assertThat(savedHealthProfile).isNotNull();
         assertThat(savedHealthProfile.getId()).isGreaterThan(0);
         assertThat(savedHealthProfile.getPatient()).isEqualTo(testPatient);
@@ -95,11 +90,10 @@ class HealthProfileRepoTest {
 
     @Test
     void testDeleteHealthProfile() {
-        // Act
+
         healthProfileRepo.delete(testHealthProfile);
 
-        // Assert
         HealthProfile deletedHealthProfile = healthProfileRepo.findByPatient_Id(testPatient.getId());
-        assertThat(deletedHealthProfile).isNull(); // Should return null after deletion
+        assertThat(deletedHealthProfile).isNull();
     }
 }

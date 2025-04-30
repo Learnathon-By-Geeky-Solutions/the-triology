@@ -6,8 +6,6 @@ public class LoginDoctorDto {
     private String email;
     private String password;
 
-    // Getters
-
     public String getEmail() {
         return email;
     }
@@ -15,8 +13,6 @@ public class LoginDoctorDto {
     public String getPassword() {
         return password;
     }
-
-    // Setters with chaining (fluent style)
 
     public LoginDoctorDto setEmail(String email) {
         this.email = email;

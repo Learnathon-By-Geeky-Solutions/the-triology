@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DoctorMapper {
-    //Map Entity -> DTO (For Response)
     public DoctorDto toDto(Doctor doctor) {
         return new DoctorDto(doctor.getId(),
                 doctor.getName(),
@@ -16,7 +15,6 @@ public class DoctorMapper {
                 );
     }
 
-    //Map DTO -> Entity (For Saving/Updating)
     public Doctor toEntity(DoctorCreateDto dto) {
         Doctor doctor = new Doctor();
         doctor.setName(dto.getDoctorName());

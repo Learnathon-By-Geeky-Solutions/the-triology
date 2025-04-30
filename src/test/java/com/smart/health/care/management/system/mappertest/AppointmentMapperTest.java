@@ -25,7 +25,7 @@ class AppointmentMapperTest {
 
     @Test
     void testToDto() {
-        // Arrange
+
         Patient patient = new Patient();
         patient.setName("John Doe");
 
@@ -39,10 +39,8 @@ class AppointmentMapperTest {
         appointment.setDate(LocalDate.of(2025, 5, 5));
         appointment.setTime(LocalTime.of(10, 30));
 
-        // Act
         AppointmentDto dto = appointmentMapper.toDto(appointment);
 
-        // Assert
         assertEquals(1L, dto.getId());
         assertEquals("John Doe", dto.getPatientName());
         assertEquals("Dr. Smith", dto.getDoctorName());
@@ -52,7 +50,7 @@ class AppointmentMapperTest {
 
     @Test
     void testToEntity() {
-        // Arrange
+
         AppointmentCreateDto dto = new AppointmentCreateDto();
         dto.setDate(LocalDate.of(2025, 6, 10));
         dto.setTime(LocalTime.of(14, 0));
@@ -63,10 +61,8 @@ class AppointmentMapperTest {
         Doctor doctor = new Doctor();
         doctor.setName("Dr. Taylor");
 
-        // Act
         Appointment appointment = appointmentMapper.toEntity(dto, patient, doctor);
 
-        // Assert
         assertEquals(patient, appointment.getPatient());
         assertEquals(doctor, appointment.getDoctor());
         assertEquals(LocalDate.of(2025, 6, 10), appointment.getDate());

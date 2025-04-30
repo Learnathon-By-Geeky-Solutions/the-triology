@@ -2,14 +2,12 @@ package com.smart.health.care.management.system.dto;
 
 public class DoctorCreateDto {
     private String doctorName;
-
     private String doctorSpeciality;
     private String doctorExperience;
     private String doctorEmail;
     private String doctorPhone;
     private String doctorPassword;
 
-    // Getters and Setters with Method Chaining
     public String getDoctorName() {
         return doctorName;
     }

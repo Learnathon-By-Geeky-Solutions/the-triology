@@ -13,7 +13,7 @@ class HealthProfileTest {
 
     @Test
     void testHealthProfileFieldsAndMethods() {
-        // Arrange
+
         Patient patient = new Patient();
         patient.setId(1L);
 
@@ -29,7 +29,6 @@ class HealthProfileTest {
         profile.setMedicalHistory("Asthma");
         profile.setConditions("Diabetes");
 
-        // Assert
         assertEquals(100L, profile.getId());
         assertEquals(patient, profile.getPatient());
         assertEquals(175.5, profile.getHeight());
@@ -43,17 +42,16 @@ class HealthProfileTest {
 
     @Test
     void testGetPatientIdWhenPatientIsNull() {
-        // Arrange
+
         HealthProfile profile = new HealthProfile();
         profile.setPatient(null);
 
-        // Act & Assert
         assertEquals(-1L, profile.getPatientId()); // As you defined for null patient
     }
 
     @Test
     void testHealthProfileBuilder() {
-        // Arrange
+
         Patient patient = new Patient();
         patient.setId(2L);
 
@@ -70,7 +68,6 @@ class HealthProfileTest {
                 .conditions("Healthy")
                 .build();
 
-        // Assert
         assertEquals(200L, profile.getId());
         assertEquals(patient, profile.getPatient());
         assertEquals(165.0, profile.getHeight());

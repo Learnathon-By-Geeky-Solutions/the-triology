@@ -21,32 +21,27 @@ class AppointmentRepoTest {
 
     @Test
     void testSaveAppointment() {
-        // Arrange
-        // Create a Patient object
+
         Patient patient = new Patient();
-        patient.setName("John Doe");  // Assuming Patient has a setName method
+        patient.setName("John Doe");
 
-        // Create a Doctor object
+
         Doctor doctor = new Doctor();
-        doctor.setName("Dr. Smith");  // Assuming Doctor has a setName method
+        doctor.setName("Dr. Smith");
 
-        // Create an Appointment object
         Appointment appointment = new Appointment();
-        appointment.setPatient(patient);  // Set the Patient object here
-        appointment.setDoctor(doctor);   // Set the Doctor object here
+        appointment.setPatient(patient);
+        appointment.setDoctor(doctor);
         appointment.setDate(LocalDate.of(2025, 4, 30));
 
-        // Convert the time string "10:00 AM" to LocalTime
         String timeString = "10:00 AM";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
         LocalTime time = LocalTime.parse(timeString, formatter);
 
         appointment.setTime(time);
 
-        // Act
         Appointment savedAppointment = appointmentRepo.save(appointment);
 
-        // Assert
         assertThat(savedAppointment).isNotNull();
         assertThat(savedAppointment.getId()).isGreaterThan(0);
         assertThat(savedAppointment.getPatient().getName()).isEqualTo("John Doe");
@@ -54,22 +49,18 @@ class AppointmentRepoTest {
 
     @Test
     void testFindAppointmentById() {
-        // Arrange
-        // Create a Patient object
+
         Patient patient = new Patient();
-        patient.setName("Jane Doe");  // Assuming Patient has a setName method
+        patient.setName("Jane Doe");
 
-        // Create a Doctor object
         Doctor doctor = new Doctor();
-        doctor.setName("Dr. Brown");  // Assuming Doctor has a setName method
+        doctor.setName("Dr. Brown");
 
-        // Create an Appointment object
         Appointment appointment = new Appointment();
-        appointment.setPatient(patient);  // Set the Patient object here
-        appointment.setDoctor(doctor);   // Set the Doctor object here
+        appointment.setPatient(patient);
+        appointment.setDoctor(doctor);
         appointment.setDate(LocalDate.of(2025, 5, 1));
 
-        // Convert the time string "02:00 PM" to LocalTime
         String timeString = "02:00 PM";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
         LocalTime time = LocalTime.parse(timeString, formatter);
@@ -77,10 +68,8 @@ class AppointmentRepoTest {
 
         appointmentRepo.save(appointment);
 
-        // Act
         Appointment foundAppointment = appointmentRepo.findById(appointment.getId()).orElse(null);
 
-        // Assert
         assertThat(foundAppointment).isNotNull();
         assertThat(foundAppointment.getId()).isEqualTo(appointment.getId());
         assertThat(foundAppointment.getPatient().getName()).isEqualTo("Jane Doe");
@@ -88,22 +77,18 @@ class AppointmentRepoTest {
 
     @Test
     void testDeleteAppointment() {
-        // Arrange
-        // Create a Patient object
+
         Patient patient = new Patient();
-        patient.setName("Alex Smith");  // Assuming Patient has a setName method
+        patient.setName("Alex Smith");
 
-        // Create a Doctor object
         Doctor doctor = new Doctor();
-        doctor.setName("Dr. White");  // Assuming Doctor has a setName method
+        doctor.setName("Dr. White");
 
-        // Create an Appointment object
         Appointment appointment = new Appointment();
-        appointment.setPatient(patient);  // Set the Patient object here
-        appointment.setDoctor(doctor);   // Set the Doctor object here
+        appointment.setPatient(patient);
+        appointment.setDoctor(doctor);
         appointment.setDate(LocalDate.of(2025, 6, 15));
 
-        // Convert the time string "09:00 AM" to LocalTime
         String timeString = "09:00 AM";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
         LocalTime time = LocalTime.parse(timeString, formatter);
@@ -111,10 +96,8 @@ class AppointmentRepoTest {
 
         Appointment savedAppointment = appointmentRepo.save(appointment);
 
-        // Act
         appointmentRepo.delete(savedAppointment);
 
-        // Assert
         Appointment deletedAppointment = appointmentRepo.findById(savedAppointment.getId()).orElse(null);
         assertThat(deletedAppointment).isNull();
     }

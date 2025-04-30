@@ -3,7 +3,6 @@ package com.smart.health.care.management.system.controller;
 import com.smart.health.care.management.system.dto.HealthProfileCreateDto;
 import com.smart.health.care.management.system.dto.HealthProfileDto;
 import com.smart.health.care.management.system.service.HealthProfileService;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,14 +18,12 @@ public class HealthProfileController {
         this.healthProfileService = healthProfileService;
     }
 
-    // Get HealthProfile by Patient ID
     @GetMapping("/{patientId}")
     public ResponseEntity<HealthProfileDto> getHealthProfile(@PathVariable Long patientId) {
         HealthProfileDto healthProfile = healthProfileService.getHealthProfileByPatientId(patientId);
         return ResponseEntity.ok(healthProfile);
     }
 
-    // Get All HealthProfiles
     @GetMapping("/")
     public ResponseEntity<List<HealthProfileDto>> getAllHealthProfiles() {
         List<HealthProfileDto> healthProfiles = healthProfileService.getAllHealthProfiles();
@@ -36,7 +33,6 @@ public class HealthProfileController {
             return ResponseEntity.noContent().build();
         }
     }
-
 
     @PostMapping("/save")
     public ResponseEntity<HealthProfileDto> saveHealthProfile(@RequestBody HealthProfileCreateDto healthProfileCreateDto) {

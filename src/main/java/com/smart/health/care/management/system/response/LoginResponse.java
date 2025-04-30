@@ -4,7 +4,6 @@ public class LoginResponse {
     private String token;
     private long expiresIn;
 
-    // Getters
     public String getToken() {
         return token;
     }
@@ -13,7 +12,6 @@ public class LoginResponse {
         return expiresIn;
     }
 
-    // Setters with method chaining
     public LoginResponse setToken(String token) {
         this.token = token;
         return this;
