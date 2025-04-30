@@ -121,14 +121,15 @@ git clone https://github.com/Learnathon-By-Geeky-Solutions/the-triology
 ## 👥 Team Members
 
 | Name         | GitHub ID                                  |
-|--------------|---------------------------------------------|
-| Mahislam     | [@Mahislam1](https://github.com/Mahislam1) |
-| Shihab       | [@CodeCraftShihab](https://github.com/CodeCraftShihab) |
-| Sheikh Sady  | [@sheikh-sady](https://github.com/sheikh-sady) |
+|--------------|--------------------------------------------------------------------|
+| Mahmudul Islam Nayon(Team Leader)     | [@Mahislam1](https://github.com/Mahislam1) |
+| Sheikh Sady              | [@sheikh-sady](https://github.com/sheikh-sady) |
+| Shihab Uddin Himel       | [@CodeCraftShihab](https://github.com/CodeCraftShihab) |
+
 
 ---
 
-## 👥 Mentor
+## 🎓 Mentor
 
  Mahtab Shahed  [@mahtabshahed](https://github.com/mahtabshahed)
 ---
