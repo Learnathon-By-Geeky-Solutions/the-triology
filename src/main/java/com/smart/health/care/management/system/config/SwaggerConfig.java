@@ -32,8 +32,15 @@ public class SwaggerConfig {
                                 .bearerFormat("JWT")
                 ))
                 .servers(Arrays.asList(
-                        new Server().url("http://localhost:8080").description("local"),
-                        new Server().url("http://localhost:8082").description("live")
+                        new Server()
+                                .url("http://localhost:8080")
+                                .description("local"),
+                        new Server()
+                                .url("http://localhost:8082")
+                                .description("live"),
+                        new Server()
+                                .url("https://smart-health-care-management-system.onrender.com")
+                                .description("production")
                 ));
     }
 }
